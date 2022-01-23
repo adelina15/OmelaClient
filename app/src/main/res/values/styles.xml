@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="login_header">
+        <item name="fontFamily">@font/tinos_bold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="phone_number">
+        <item name="fontFamily">@font/tinos</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="small_text">
+        <item name="fontFamily">@font/tinos</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="tiny_text">
+        <item name="fontFamily">@font/tinos</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="login_button">
+        <item name="android:layout_width">299dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:fontFamily">@font/tinos</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>
