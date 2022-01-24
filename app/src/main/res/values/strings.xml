@@ -1,9 +1,24 @@
 <resources>
-    <string name="app_name">Omela</string>
+    <string name="app_name" />
     <string name="login">вход</string>
     <string name="country_code">+996</string>
     <string name="log_in">войти</string>
     <string name="registration">регистрация</string>
     <string name="password">пароль</string>
     <string name="get_code">получить код</string>
+    <string name="change_number">изменить номер</string>
+    <string name="wrong_code">неверный код</string>
+    <string name="send_again">отправить повторно</string>
+    <string name="pass_hint">****</string>
+    <string name="number_hint">+996 123 456 789</string>
+    <string name="we_sent_code">мы отправили смс с кодом на</string>
+    <string name="approve">подтвердить</string>
+    <string name="sms_code">смс-код</string>
+    <string name="name_hint">Каныкей</string>
+    <string name="name_needed">имя*</string>
+    <string name="password_needed">пароль*</string>
+    <string name="number_needed">номер телефона*</string>
+    <string name="_123456">123456</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
