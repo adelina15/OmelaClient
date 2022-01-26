@@ -48,11 +48,9 @@
 
         <android.widget.Button
             android:id="@+id/verifyButton"
-            style="@style/login_button"
+            style="@style/gray_button"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_gray"
             android:text="@string/get_code"
-            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -61,24 +59,52 @@
         <EditText
             android:id="@+id/registrationPassword"
             style="@style/small_text"
-            android:layout_width="299dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="11dp"
+            android:layout_marginEnd="42dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/_123456"
             android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+        <EditText
+            android:id="@+id/registrationPasswordVerify"
+            style="@style/small_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="42dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/_123456"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="29dp"
-            android:layout_height="27dp"
+            android:layout_width="20dp"
+            android:layout_height="19dp"
             android:layout_margin="5dp"
             app:layout_constraintEnd_toEndOf="@+id/registrationPassword"
             app:layout_constraintTop_toTopOf="@+id/registrationPassword"
+            app:srcCompat="@drawable/ic_visibility" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="20dp"
+            android:layout_height="19dp"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/registrationPasswordVerify"
+            app:layout_constraintTop_toTopOf="@+id/registrationPasswordVerify"
             app:srcCompat="@drawable/ic_visibility" />
 
         <TextView
@@ -94,13 +120,15 @@
         <EditText
             android:id="@+id/registrationPhone"
             style="@style/small_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="11dp"
+            android:layout_marginEnd="42dp"
             android:ems="10"
             android:hint="@string/number_hint"
             android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -116,26 +144,40 @@
             app:layout_constraintTop_toBottomOf="@+id/registrationPhone" />
 
         <TextView
+            android:id="@+id/textView9"
+            style="@style/tiny_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:text="подтвердить пароль*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registrationPassword" />
+
+        <TextView
             android:id="@+id/textView4"
             style="@style/tiny_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="41dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="20dp"
             android:text="@string/name_needed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registrationPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/registrationPasswordVerify" />
 
         <EditText
             android:id="@+id/registrationName"
             style="@style/small_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="41dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="11dp"
+            android:layout_marginEnd="42dp"
             android:ems="10"
             android:hint="@string/name_hint"
             android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 

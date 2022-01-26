@@ -10,30 +10,22 @@ import com.example.omela.R
 import com.example.omela.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment() {
-    lateinit var binding: FragmentRegistrationBinding
+    private var _binding: FragmentRegistrationBinding? = null
+    private val binding
+    get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_registration, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_registration, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding.toolbar) {
-            inflateMenu(R.menu.registration_menu)
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.action_skip -> {
-                        Toast.makeText(requireContext(), "hey", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> false
-                }
-            }
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
                 val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
@@ -45,5 +37,8 @@ class RegistrationFragment : Fragment() {
         }
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

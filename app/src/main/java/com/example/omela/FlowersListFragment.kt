@@ -10,14 +10,17 @@ import androidx.databinding.DataBindingUtil
 import com.example.omela.databinding.FragmentFlowersListBinding
 
 class FlowersListFragment : Fragment() {
-    lateinit var binding: FragmentFlowersListBinding
+    private var _binding: FragmentFlowersListBinding? = null
+    private val binding
+    get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
         return binding.root
     }
 
@@ -41,5 +44,10 @@ class FlowersListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -16,11 +16,10 @@ import com.example.omela.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this, R.layout.activity_login)
-
+        setContentView(R.layout.activity_login)
         //Make status bar white
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val window: Window = window
