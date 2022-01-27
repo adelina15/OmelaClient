@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.MainActivity
 import com.example.omela.R
+import com.example.omela.SplashActivity
 import com.example.omela.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {

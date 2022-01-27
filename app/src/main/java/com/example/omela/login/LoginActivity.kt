@@ -7,12 +7,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.omela.R
-import com.example.omela.databinding.ActivityLoginBinding
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

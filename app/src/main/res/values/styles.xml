@@ -70,7 +70,7 @@
         <item name="android:background">@color/my_background_color</item>
     </style>
     <style name="RecyclerViewDefault">
-        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">16dp</item>
         <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
     </style>
