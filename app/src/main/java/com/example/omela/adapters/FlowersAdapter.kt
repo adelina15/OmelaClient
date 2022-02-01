@@ -33,9 +33,6 @@ class FlowersAdapter(): RecyclerView.Adapter<FlowersAdapter.FlowersViewHolder>()
 
     override fun onBindViewHolder(holder: FlowersViewHolder, position: Int) {
         holder.bind(list[position])
-        holder.binding.heart.setOnClickListener {
-
-        }
     }
 
     override fun getItemCount(): Int {

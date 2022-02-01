@@ -1,8 +1,11 @@
 package com.example.omela.login
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.*
-import android.widget.Toast
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
@@ -35,10 +38,24 @@ class RegistrationFragment : Fragment() {
             val action = RegistrationFragmentDirections.actionRegistrationFragmentToCodeFragment()
             findNavController().navigate(action)
         }
+        binding.show1.setOnClickListener { showHidePass(binding.show1, binding.registrationPassword) }
+        binding.show2.setOnClickListener { showHidePass(binding.show2, binding.registrationPasswordVerify) }
 
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showHidePass(view: ImageView, editText: EditText){
+        if (view.tag == "R.id.ic_visible") {
+            editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            view.setImageResource(R.drawable.ic_visibility)
+            view.tag = "R.drawable.ic_visibility"
+        } else {
+            editText.transformationMethod = PasswordTransformationMethod.getInstance()
+            view.setImageResource(R.drawable.ic_visible)
+            view.tag = "R.id.ic_visible"
+        }
     }
 }

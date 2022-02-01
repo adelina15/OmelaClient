@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.omela.R
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

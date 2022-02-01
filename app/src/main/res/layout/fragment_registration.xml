@@ -90,22 +90,24 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/show1"
             android:layout_width="20dp"
             android:layout_height="19dp"
             android:layout_margin="5dp"
             app:layout_constraintEnd_toEndOf="@+id/registrationPassword"
             app:layout_constraintTop_toTopOf="@+id/registrationPassword"
-            app:srcCompat="@drawable/ic_visibility" />
+            app:srcCompat="@drawable/ic_visibility"
+            android:tag="@string/tag_show"/>
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/show2"
             android:layout_width="20dp"
             android:layout_height="19dp"
             android:layout_margin="5dp"
             app:layout_constraintEnd_toEndOf="@+id/registrationPasswordVerify"
             app:layout_constraintTop_toTopOf="@+id/registrationPasswordVerify"
-            app:srcCompat="@drawable/ic_visibility" />
+            app:srcCompat="@drawable/ic_visibility"
+            android:tag="@string/tag_show"/>
 
         <TextView
             android:id="@+id/textView2"
