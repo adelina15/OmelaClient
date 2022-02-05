@@ -30,4 +30,5 @@
     <string name="sale">РАСПРОДАЖА</string>
     <string name="need_help">НУЖНА ПОМОЩЬ?</string>
     <string name="tag_show">R.drawable.ic_visible</string>
+    <string name="filter">ФИЛЬТР</string>
 </resources>

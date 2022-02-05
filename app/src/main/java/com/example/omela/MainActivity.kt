@@ -13,12 +13,13 @@ import androidx.fragment.app.Fragment
 import com.example.omela.databinding.ActivityLoginBinding
 import com.example.omela.databinding.ActivityMainBinding
 import androidx.core.view.WindowInsetsControllerCompat
-
-
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val basketFragment = BasketFragment()
         val favoritesFragment = FavoritesFragment()
         val accountFragment = AccountFragment()
-        setCurrentFragment(homeFragment)
+//        setCurrentFragment(homeFragment)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -49,12 +50,15 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_fragment) as NavHostFragment
+        navController = navHostFragment.navController
     }
 
-    private fun setCurrentFragment(fragment: Fragment)=
+    private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment,fragment)
+            replace(R.id.nav_fragment,fragment)
             commit()
         }
-
 }

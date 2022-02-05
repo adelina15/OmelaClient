@@ -15,6 +15,12 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20sp</item>
     </style>
+    <style name="header_center">
+        <item name="fontFamily">@font/tinos</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
     <style name="header_bold">
         <item name="fontFamily">@font/tinos_bold</item>
         <item name="android:textColor">@color/black</item>

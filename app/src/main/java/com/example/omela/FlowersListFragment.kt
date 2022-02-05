@@ -2,22 +2,52 @@ package com.example.omela
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.omela.adapters.CategoriesAdapter
 import com.example.omela.adapters.FlowersAdapter
 import com.example.omela.databinding.FragmentFlowersListBinding
+import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
 
 class FlowersListFragment : Fragment() {
     private var _binding: FragmentFlowersListBinding? = null
     private val binding
-    get() = _binding!!
+        get() = _binding!!
 
     private val flowersAdapter = FlowersAdapter()
+    private val categoriesAdapter = CategoriesAdapter()
+
+    private val categoriesList by lazy {
+        mutableListOf(
+            CategoriesItem(
+                "минимализм",
+                R.drawable.cat_minimal
+            ),
+            CategoriesItem(
+                "шебби-шик",
+                R.drawable.cat_shik
+            ),
+            CategoriesItem(
+                "рустик",
+                R.drawable.cat_3
+            ),
+            CategoriesItem(
+                "лофт",
+                R.drawable.cat_4
+            ),
+            CategoriesItem(
+                "бохо",
+                R.drawable.cat_shik
+            ),
+        )
+    }
 
     private val flowersList by lazy {
         mutableListOf(
@@ -64,7 +94,8 @@ class FlowersListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
         init()
         return binding.root
     }
@@ -81,13 +112,18 @@ class FlowersListFragment : Fragment() {
                         true
                     }
                     R.id.action_sort -> {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
+                        val action =
+                            FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
+                        findNavController().navigate(action)
                         true
                     }
                     else -> false
                 }
             }
+        }
+        binding.toTopsButton.setOnClickListener {
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
+            findNavController().navigate(action)
         }
     }
 
@@ -96,7 +132,7 @@ class FlowersListFragment : Fragment() {
         _binding = null
     }
 
-    private fun init(){
+    private fun init() {
         binding.apply {
             recyclerViewTops.layoutManager = GridLayoutManager(requireContext(), 2)
             recyclerViewTops.adapter = flowersAdapter
@@ -106,7 +142,10 @@ class FlowersListFragment : Fragment() {
 
             recyclerViewSale.layoutManager = GridLayoutManager(requireContext(), 2)
             recyclerViewSale.adapter = flowersAdapter
+
+            recyclerViewCategories.adapter = categoriesAdapter
         }
         flowersAdapter.setList(flowersList)
+        categoriesAdapter.setList(categoriesList)
     }
 }
