@@ -23,7 +23,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty" />
     <string name="omela">OMELA</string>
-    <string name="call_us">закажите звонок и мы\n перезвоним вам или звоните\n по номеру:</string>
+    <string name="call_us">звоните по номеру:</string>
     <string name="categories">КАТЕГОРИИ</string>
     <string name="tops">ХИТЫ ПРОДАЖ</string>
     <string name="author">АВТОРСКИЕ БУКЕТЫ</string>
@@ -31,4 +31,14 @@
     <string name="need_help">НУЖНА ПОМОЩЬ?</string>
     <string name="tag_show">R.drawable.ic_visible</string>
     <string name="filter">ФИЛЬТР</string>
+    <string name="basket">Корзина</string>
+    <string name="clear">очистить</string>
+    <string name="summ">сумма заказа:</string>
+    <string name="salee">скидка:</string>
+    <string name="placeholder">15 % - Светлое воспоминание</string>
+    <string name="_20_800_c">20 800 c</string>
+    <string name="_1_200_c">1 200 c</string>
+    <string name="totall">ИТОГО:</string>
+    <string name="_19600_c">19600 c</string>
+    <string name="oformit">оформить заказ</string>
 </resources>

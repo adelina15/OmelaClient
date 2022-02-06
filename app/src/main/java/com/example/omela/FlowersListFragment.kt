@@ -12,9 +12,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.omela.adapters.CategoriesAdapter
 import com.example.omela.adapters.FlowersAdapter
+import com.example.omela.adapters.SaleAdapter
 import com.example.omela.databinding.FragmentFlowersListBinding
 import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
+import com.example.omela.model.SaleItem
 
 class FlowersListFragment : Fragment() {
     private var _binding: FragmentFlowersListBinding? = null
@@ -23,6 +25,7 @@ class FlowersListFragment : Fragment() {
 
     private val flowersAdapter = FlowersAdapter()
     private val categoriesAdapter = CategoriesAdapter()
+    private val saleAdapter = SaleAdapter()
 
     private val categoriesList by lazy {
         mutableListOf(
@@ -88,6 +91,51 @@ class FlowersListFragment : Fragment() {
         )
     }
 
+    private val saleList by lazy {
+        mutableListOf(
+            SaleItem(
+                "НЕВЕСТЕ ДОРОГУ",
+                R.drawable.flower_1,
+                4900,
+                "-15%",
+                true
+            ),
+            SaleItem(
+                "ИСКРЕННОСТЬ",
+                R.drawable.flower_2,
+                5000,
+                "-9%",
+                true
+            ),
+            SaleItem(
+                "ВЛЮБЛЕННОСТЬ",
+                R.drawable.flower_3,
+                7100,
+                "-20%",
+            ),
+            SaleItem(
+                "ЭЛЕГАНТНОСТЬ",
+                R.drawable.flower_4,
+                3300,
+                "-8%",
+                true
+            ),
+            SaleItem(
+                "ВРЕМЯ ЛЮБИТЬ",
+                R.drawable.flower_5,
+                8900,
+                "-5%",
+                true
+            ),
+            SaleItem(
+                "ЛЮБОВЬ",
+                R.drawable.floower_6,
+                5700,
+                "-10%",
+            ),
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,11 +189,12 @@ class FlowersListFragment : Fragment() {
             recyclerViewAuthor.adapter = flowersAdapter
 
             recyclerViewSale.layoutManager = GridLayoutManager(requireContext(), 2)
-            recyclerViewSale.adapter = flowersAdapter
+            recyclerViewSale.adapter = saleAdapter
 
             recyclerViewCategories.adapter = categoriesAdapter
         }
         flowersAdapter.setList(flowersList)
         categoriesAdapter.setList(categoriesList)
+        saleAdapter.setList(saleList)
     }
 }
