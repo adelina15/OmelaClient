@@ -41,4 +41,14 @@
     <string name="totall">ИТОГО:</string>
     <string name="_19600_c">19600 c</string>
     <string name="oformit">оформить заказ</string>
+    <string name="to_basket">в корзину</string>
+    <string name="contentt">состав:</string>
+    <string name="sizee">размер букета:</string>
+    <string name="description">ОПИСАНИЕ</string>
+    <string name="neww">НОВИНКА</string>
+    <string name="comments">комментарии</string>
+    <string name="_5">/5</string>
+    <string name="description_proof">соответсвует описанию</string>
+    <string name="price_quality">цена/качество</string>
+    <string name="service">сервис</string>
 </resources>
