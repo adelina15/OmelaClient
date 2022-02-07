@@ -1,6 +1,7 @@
 package com.example.omela
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
@@ -169,9 +170,9 @@ class FlowersListFragment : Fragment() {
                 }
             }
         }
-        binding.toTopsButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
-            findNavController().navigate(action)
+        binding.callButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
+            startActivity(intent)
         }
     }
 

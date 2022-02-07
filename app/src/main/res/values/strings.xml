@@ -51,4 +51,10 @@
     <string name="description_proof">соответсвует описанию</string>
     <string name="price_quality">цена/качество</string>
     <string name="service">сервис</string>
+    <string name="my_profile">Мой профиль</string>
+    <string name="log_out">выйти</string>
+    <string name="shop_branches">филиалы магазинов</string>
+    <string name="history_of_orders">история заказов</string>
+    <string name="favorites">Избранные</string>
+    <string name="nothing_here">здесь ничего нет</string>
 </resources>
