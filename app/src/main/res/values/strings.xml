@@ -57,4 +57,19 @@
     <string name="history_of_orders">история заказов</string>
     <string name="favorites">Избранные</string>
     <string name="nothing_here">здесь ничего нет</string>
+    <string name="ordering">оформление заказа</string>
+    <string name="branch1">г. Бишкек\n Байтик Баатыра, 49</string>
+    <string name="branch2">г. Бишкек\n проспект Чуй 147/1</string>
+    <string name="branch3">г. Бишкек\n Манаса, 47</string>
+    <string name="branch4">г. Бишкек\n Юнусалиева 160/1</string>
+    <string name="branches_caps">ФИЛИАЛЫ:</string>
+    <string name="status_of_order">статус заказа</string>
+    <string name="await_call">ожидание звонка</string>
+    <string name="call_in_10_mins">вам перезвонят в течении 10 мин</string>
+    <string name="courier_got_order">КУРЬЕР ПОЛУЧИЛ ЗАКАЗ</string>
+    <string name="come_in_hour">прибудет в течении 1 часа</string>
+    <string name="omw">КУРЬЕР В ПУТИ</string>
+    <string name="courier_here">КУРЬЕР ПРИБЫЛ</string>
+    <string name="order_finished">ЗАКАЗ ЗАВЕРШЕН</string>
+    <string name="send">отправить</string>
 </resources>
