@@ -58,10 +58,10 @@
     <string name="favorites">Избранные</string>
     <string name="nothing_here">здесь ничего нет</string>
     <string name="ordering">оформление заказа</string>
-    <string name="branch1">г. Бишкек\n Байтик Баатыра, 49</string>
-    <string name="branch2">г. Бишкек\n проспект Чуй 147/1</string>
-    <string name="branch3">г. Бишкек\n Манаса, 47</string>
-    <string name="branch4">г. Бишкек\n Юнусалиева 160/1</string>
+    <string name="branch1">Байтик Баатыра, 49</string>
+    <string name="branch2">проспект Чуй 147/1</string>
+    <string name="branch3">Манаса, 47</string>
+    <string name="branch4">Юнусалиева 160/1</string>
     <string name="branches_caps">ФИЛИАЛЫ:</string>
     <string name="status_of_order">статус заказа</string>
     <string name="await_call">ожидание звонка</string>
@@ -72,4 +72,6 @@
     <string name="courier_here">КУРЬЕР ПРИБЫЛ</string>
     <string name="order_finished">ЗАКАЗ ЗАВЕРШЕН</string>
     <string name="send">отправить</string>
+    <string name="rate_work">оценка работы</string>
+    <string name="rate_omela">ОЦЕНИТЕ РАБОТУ OMELA</string>
 </resources>
