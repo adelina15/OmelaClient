@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/basket_image"
-            android:layout_width="137dp"
-            android:layout_height="137dp"
-            android:background="@drawable/rounded_corner"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
             app:srcCompat="@drawable/cat_4" />
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="16dp"
             android:text="прикосновнение"
             android:textAllCaps="true"
             app:layout_constraintStart_toEndOf="@+id/basket_image"
@@ -31,28 +32,28 @@
 
         <TextView
             android:id="@+id/basket_price"
-            style="@style/small_text"
+            style="@style/bigger_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginTop="24dp"
             android:text="8 900 c"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/basket_image" />
+            app:layout_constraintStart_toEndOf="@+id/basket_image"
+            app:layout_constraintTop_toBottomOf="@+id/basket_name" />
 
         <ImageView
             android:id="@+id/delete"
-            android:layout_width="21dp"
-            android:layout_height="23dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
             android:layout_marginEnd="14dp"
-            android:layout_marginBottom="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_delete" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_basket_gray" />
 
         <TextView
             android:id="@+id/basket_discount"
-            style="@style/flowers_list_text"
+            style="@style/comments_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -61,5 +62,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/basket_price"
             app:layout_constraintStart_toEndOf="@+id/basket_price"
             app:layout_constraintTop_toTopOf="@+id/basket_price" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_marginTop="24dp"
+            style="@style/separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/basket_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

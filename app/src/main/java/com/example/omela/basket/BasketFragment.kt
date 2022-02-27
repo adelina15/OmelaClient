@@ -1,4 +1,4 @@
-package com.example.omela
+package com.example.omela.basket
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import com.example.omela.R
+import com.example.omela.account.AccountFragmentDirections
 import com.example.omela.adapters.BasketAdapter
 import com.example.omela.databinding.FragmentBasketBinding
 import com.example.omela.model.BasketItem
-import com.example.omela.model.FlowersItem
 
 class BasketFragment : Fragment() {
     private var _binding: FragmentBasketBinding? = null
@@ -47,6 +47,10 @@ class BasketFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_basket, container, false)
         init()
+        binding.orderButton.setOnClickListener {
+            val action = BasketFragmentDirections.actionBasketFragmentToOrderFragment()
+            findNavController().navigate(action)
+        }
         return binding.root
     }
 

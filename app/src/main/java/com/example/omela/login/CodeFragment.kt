@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.Toast
@@ -14,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.omela.MainActivity
+import com.example.omela.main.MainActivity
 import com.example.omela.R
 import com.example.omela.databinding.FragmentCodeBinding
 import com.google.firebase.FirebaseException

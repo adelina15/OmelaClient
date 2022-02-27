@@ -1,16 +1,16 @@
-package com.example.omela
+package com.example.omela.main
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.omela.R
 import com.example.omela.adapters.CategoriesAdapter
 import com.example.omela.adapters.FlowersAdapter
 import com.example.omela.adapters.SaleAdapter
@@ -161,8 +161,7 @@ class FlowersListFragment : Fragment() {
                         true
                     }
                     R.id.action_sort -> {
-                        val action =
-                            FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
+                        val action = FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
                         findNavController().navigate(action)
                         true
                     }

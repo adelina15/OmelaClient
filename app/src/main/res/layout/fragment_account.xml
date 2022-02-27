@@ -30,14 +30,34 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleTextColor="@color/white">
 
-                <TextView
-                    style="@style/header_center"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/my_profile"
-                    android:textAllCaps="true" />
+                    android:layout_height="match_parent">
 
+                    <TextView
+                        style="@style/header_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_profile"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/logOutButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_log_out"
+                        android:contentDescription="@string/log_out" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
+
+
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,22 +65,12 @@
             android:id="@+id/profile_avatar"
             android:layout_width="105dp"
             android:layout_height="105dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
             app:srcCompat="@drawable/avatar" />
-
-        <ImageView
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="23dp"
-            android:src="@drawable/ic_edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <TextView
             android:id="@+id/profile_name"
@@ -85,40 +95,26 @@
             app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
         <TextView
-            android:id="@+id/textView28"
-            style="@style/comments_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/history_of_orders"
+            android:id="@+id/editButton"
+            style="@style/AccountTextView"
+            android:layout_marginTop="32dp"
+            android:text="@string/edit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <TextView
-            android:id="@+id/textView29"
-            style="@style/comments_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="42dp"
-            android:text="@string/shop_branches"
+            android:id="@+id/historyButton"
+            style="@style/AccountTextView"
+            android:text="@string/history_of_orders"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView28" />
+            app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
         <TextView
-            android:id="@+id/log_out"
-            style="@style/comments_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:text="@string/log_out"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/branchesButton"
+            style="@style/AccountTextView"
+            android:text="@string/shop_branches"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+            app:layout_constraintTop_toBottomOf="@+id/historyButton" />
 
         <ImageView
             android:id="@+id/to_history"
@@ -126,8 +122,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="27dp"
             android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/editButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView28" />
+            app:layout_constraintTop_toTopOf="@+id/editButton" />
 
         <ImageView
             android:id="@+id/to_branches"
@@ -135,7 +132,40 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="27dp"
             android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/historyButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView29" />
+            app:layout_constraintTop_toTopOf="@+id/historyButton" />
+
+        <ImageView
+            android:id="@+id/to_branches2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="27dp"
+            android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/branchesButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+        <View
+            android:id="@+id/view3"
+            style="@style/separator"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editButton" />
+
+        <View
+            android:id="@+id/view4"
+            style="@style/separator"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/historyButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

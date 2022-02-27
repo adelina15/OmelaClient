@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home"
+        android:id="@+id/flowersListFragment"
         android:icon="@drawable/home_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/basket"
+        android:id="@+id/basketFragment"
         android:icon="@drawable/basket_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/favorite"
+        android:id="@+id/favoritesFragment"
         android:icon="@drawable/favorite_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/account"
+        android:id="@+id/accountFragment"
         android:icon="@drawable/account_selector"
         android:title="@string/empty" />
 </menu>
