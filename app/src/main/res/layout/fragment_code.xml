@@ -50,7 +50,7 @@
             android:id="@+id/verifyButton"
             style="@style/login_button"
             android:layout_marginTop="60dp"
-            android:background="@drawable/button_gray"
+            android:background="@color/gray"
             android:text="@string/approve"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,10 +88,10 @@
             android:background="@color/white"
             android:ems="10"
             android:gravity="center"
-            android:hint="____"
+            android:hint="______"
             android:inputType="number"
             android:letterSpacing="0.2"
-            android:maxLength="4"
+            android:maxLength="6"
             android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +104,7 @@
             android:background="@drawable/button_white"
             android:text="@string/send_again"
             android:textColor="@color/black"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,18 +125,19 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextCode" />
 
         <TextView
-            android:id="@+id/change_number"
+            android:id="@+id/timer"
             style="@style/small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/change_number"
-            android:visibility="invisible"
+            android:text="59c"
+            android:textColor="@color/red"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/sendAgainButton"
             app:layout_constraintEnd_toEndOf="@+id/verifyButton"
-            app:layout_constraintStart_toStartOf="@+id/verifyButton"
-            app:layout_constraintTop_toBottomOf="@+id/verifyButton" />
+            app:layout_constraintStart_toStartOf="@+id/verifyButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

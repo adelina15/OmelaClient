@@ -20,6 +20,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/main_navigation" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#D3D3D3 "
+            app:layout_constraintBottom_toBottomOf="@+id/nav_fragment"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             app:labelVisibilityMode="unlabeled"

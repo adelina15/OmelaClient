@@ -6,15 +6,20 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.MainActivity
 import com.example.omela.R
 import com.example.omela.databinding.FragmentLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
+    var number: String = ""
+    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        numberChangeListener()
+        auth = FirebaseAuth.getInstance()
         with(binding.toolbar) {
             inflateMenu(R.menu.registration_menu)
             setOnMenuItemClickListener {
@@ -40,40 +47,51 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-        with(binding){
-            openRegistration.setOnClickListener {
-                val action = LoginFragmentDirections.actionLoginFragmentToRegistrationFragment()
-                findNavController().navigate(action)
-            }
-            show.setOnClickListener {
-                Toast.makeText(requireContext(), "${binding.show.tag}", Toast.LENGTH_SHORT).show()
-            }
-            show.setOnClickListener { showHidePass() }
+        with(binding) {
+//            openRegistration.setOnClickListener {
+//                val action = LoginFragmentDirections.actionLoginFragmentToRegistrationFragment()
+//                findNavController().navigate(action)
+//            }
+//            show.setOnClickListener {
+//                Toast.makeText(requireContext(), "${binding.show.tag}", Toast.LENGTH_SHORT).show()
+//            }
+//            show.setOnClickListener { showHidePass() }
 
             verifyButton.setOnClickListener {
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent)
+                login()
             }
 
-            if(!editTextPhone.text.isNullOrEmpty() && !registrationPassword.text.isNullOrEmpty()){
-                verifyButton
-            }
+//            if(!editTextPhone.text.isNullOrEmpty() && !registrationPassword.text.isNullOrEmpty()){
+//                verifyButton
+//            }
         }
 
 
     }
 
-    private fun showHidePass(){
-        val button = binding.show
-        val password = binding.registrationPassword
-        if (button.tag == "R.id.ic_visible") {
-            password.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            button.setImageResource(R.drawable.ic_visibility)
-            button.tag = "R.drawable.ic_visibility"
+    private fun numberChangeListener() {
+        binding.editTextPhone.addTextChangedListener {
+            if (it?.length == 13) {
+                binding.verifyButton.apply {
+                    background = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.button_black
+                    )
+                    isEnabled = true
+                }
+            }
+        }
+    }
+
+    private fun login() {
+        //получить номер телефона из editText
+        number = binding.editTextPhone.text.trim().toString()
+        if (number.isNotEmpty() && number.length == 13) {
+            // sendVerificationCode(number)
+            val action = LoginFragmentDirections.actionLoginFragmentToCodeFragment(number)
+            findNavController().navigate(action)
         } else {
-            password.transformationMethod = PasswordTransformationMethod.getInstance()
-            button.setImageResource(R.drawable.ic_visible)
-            button.tag = "R.id.ic_visible"
+            Toast.makeText(requireContext(), "Введите номер телефона", Toast.LENGTH_SHORT).show()
         }
     }
 

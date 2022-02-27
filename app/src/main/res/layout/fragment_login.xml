@@ -7,6 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
@@ -39,12 +40,11 @@
             style="@style/login_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="51dp"
             android:text="@string/login"
-            app:layout_constraintBottom_toTopOf="@+id/openRegistration"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.19" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextPhone"
@@ -52,73 +52,28 @@
             android:layout_width="252dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="99dp"
-            android:layout_marginTop="39dp"
             android:layout_marginEnd="80dp"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="+996xxxxxxxxx"
             android:inputType="phone"
-            android:text="+996"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registrationTextView" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="299dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPhone">
-
-            <EditText
-                android:id="@+id/registrationPassword"
-                style="@style/small_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-
-            <ImageView
-                android:id="@+id/show"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:clickable="false"
-                android:focusable="auto"
-                android:tag="@string/tag_show"
-                app:srcCompat="@drawable/ic_visible" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_constraintVertical_bias="0.42000002" />
 
         <android.widget.Button
             android:id="@+id/verifyButton"
-            style="@style/gray_button"
-            android:layout_marginTop="78dp"
-            android:background="@drawable/button_black"
+            style="@style/login_button"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/button_gray"
             android:text="@string/log_in"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <TextView
-            android:id="@+id/openRegistration"
-            style="@style/small_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/registration"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,13 +30,13 @@ class RegistrationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
-            setNavigationOnClickListener {
-                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-                findNavController().navigate(action)  }
+//            setNavigationOnClickListener {
+//                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+//                findNavController().navigate(action)  }
         }
         binding.verifyButton.setOnClickListener {
-            val action = RegistrationFragmentDirections.actionRegistrationFragmentToCodeFragment()
-            findNavController().navigate(action)
+//            val action = RegistrationFragmentDirections.actionRegistrationFragmentToCodeFragment()
+//            findNavController().navigate(action)
         }
         binding.show1.setOnClickListener { showHidePass(binding.show1, binding.registrationPassword) }
         binding.show2.setOnClickListener { showHidePass(binding.show2, binding.registrationPasswordVerify) }

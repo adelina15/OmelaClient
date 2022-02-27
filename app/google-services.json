@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406836485406",
+    "project_id": "omela-3dceb",
+    "storage_bucket": "omela-3dceb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406836485406:android:8119687e4b355ac1b4fd0f",
+        "android_client_info": {
+          "package_name": "com.example.omela"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406836485406-r74ves7dvpnfoop2eb6i6aj4cbd92b1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaMJK-KNKd9yU96FcOdQB2uPgg_qhUYCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406836485406-r74ves7dvpnfoop2eb6i6aj4cbd92b1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
