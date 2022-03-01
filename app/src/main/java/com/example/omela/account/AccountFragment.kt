@@ -41,6 +41,10 @@ class AccountFragment : Fragment() {
             logOutButton.setOnClickListener {
                 alertDialog()
             }
+            historyButton.setOnClickListener {
+                val action = AccountFragmentDirections.actionAccountFragmentToOrderHistoryFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 

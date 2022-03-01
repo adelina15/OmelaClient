@@ -33,6 +33,16 @@ class FlowersAdapter(): RecyclerView.Adapter<FlowersAdapter.FlowersViewHolder>()
 
     override fun onBindViewHolder(holder: FlowersViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.plus.setOnClickListener {
+            holder.binding.minus.visibility = View.VISIBLE
+            holder.binding.count.visibility = View.VISIBLE
+            holder.binding.plus.visibility = View.INVISIBLE
+        }
+        holder.binding.minus.setOnClickListener {
+            holder.binding.plus.visibility = View.VISIBLE
+            holder.binding.count.visibility = View.INVISIBLE
+            holder.binding.minus.visibility = View.INVISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
