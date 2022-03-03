@@ -11,6 +11,7 @@ import android.view.View
 import android.view.Window
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.omela.login.LoginActivity
+import com.example.omela.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

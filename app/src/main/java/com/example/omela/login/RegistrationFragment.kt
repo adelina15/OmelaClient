@@ -6,16 +6,23 @@ import android.text.method.PasswordTransformationMethod
 import android.view.*
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.databinding.FragmentRegistrationBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class RegistrationFragment : Fragment() {
     private var _binding: FragmentRegistrationBinding? = null
     private val binding
     get() = _binding!!
+
+    var number: String = ""
+    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,23 +35,61 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        change()
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
-//            setNavigationOnClickListener {
-//                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
-//                findNavController().navigate(action)  }
+            setNavigationOnClickListener {
+                val action = RegistrationFragmentDirections.actionRegistrationFragmentToLoginFragment()
+                findNavController().navigate(action)  }
         }
         binding.verifyButton.setOnClickListener {
-//            val action = RegistrationFragmentDirections.actionRegistrationFragmentToCodeFragment()
-//            findNavController().navigate(action)
+            login()
         }
-        binding.show1.setOnClickListener { showHidePass(binding.show1, binding.registrationPassword) }
-        binding.show2.setOnClickListener { showHidePass(binding.show2, binding.registrationPasswordVerify) }
+//        binding.show1.setOnClickListener { showHidePass(binding.show1, binding.registrationPassword) }
+//        binding.show2.setOnClickListener { showHidePass(binding.show2, binding.registrationPasswordVerify) }
 
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun isFull(): Boolean {
+        var isNumberCorrect = false
+        var isNameCorrect = false
+        binding.registrationPhone.addTextChangedListener {
+            number = it?.trim().toString()
+            if (number.length == 13) isNumberCorrect = true
+        }
+        binding.registrationName.addTextChangedListener {
+            if (it?.isNotEmpty() == true) isNameCorrect  = true
+        }
+        if (isNumberCorrect && isNameCorrect) return true
+        return false
+    }
+
+    private fun change(){
+        if (isFull()) {
+            binding.verifyButton.apply {
+                background = ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.button_black
+                )
+                isEnabled = true
+            }
+        }
+    }
+
+    private fun login() {
+        //получить номер телефона из editText
+        number = binding.registrationPhone.text.trim().toString()
+        if (isFull()) {
+            // sendVerificationCode(number)
+            val action = RegistrationFragmentDirections.actionRegistrationFragmentToCodeFragment(number)
+            findNavController().navigate(action)
+        } else {
+            Toast.makeText(requireContext(), "Введите номер телефона и имя", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showHidePass(view: ImageView, editText: EditText){

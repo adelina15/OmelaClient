@@ -6,18 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.omela.adapters.FlowersAdapter
 import com.example.omela.databinding.FragmentFavoritesBinding
 import com.example.omela.model.FlowersItem
 
-class FavoritesFragment : Fragment() {
+class FavoritesFragment : Fragment(), Delegates.FlowerClicked {
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding
         get() = _binding!!
 
-    private val flowersAdapter = FlowersAdapter()
+    private val flowersAdapter = FlowersAdapter(this)
 
     private val flowersList by lazy {
         mutableListOf(
@@ -25,13 +26,15 @@ class FavoritesFragment : Fragment() {
                 "НЕВЕСТЕ ДОРОГУ",
                 R.drawable.flower_1,
                 4900,
-                true
+                true,
+                3
             ),
             FlowersItem(
                 "ИСКРЕННОСТЬ",
                 R.drawable.flower_2,
                 5000,
-                true
+                true,
+                2
             ))
     }
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,5 +55,10 @@ class FavoritesFragment : Fragment() {
             topsRecyclerView.adapter = flowersAdapter
         }
         flowersAdapter.setList(flowersList)
+    }
+
+    override fun onItemClick(flower: FlowersItem) {
+        val action = FavoritesFragmentDirections.actionFavoritesFragmentToFlowerDetailsFragment(flower)
+        findNavController().navigate(action)
     }
 }

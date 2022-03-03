@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.databinding.CategoriesItemBinding
 import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
 
-class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter(private val categoryClicker: Delegates.CategoryClicked): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     private var list = mutableListOf<CategoriesItem>()
     fun setList (list : MutableList<CategoriesItem>){
@@ -32,6 +33,9 @@ class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHo
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.layout.setOnClickListener {
+            categoryClicker.onItemClick(list[position ])
+        }
     }
 
     override fun getItemCount(): Int {

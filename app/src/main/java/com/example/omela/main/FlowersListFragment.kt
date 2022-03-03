@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.adapters.CategoriesAdapter
 import com.example.omela.adapters.FlowersAdapter
@@ -19,13 +20,13 @@ import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
 import com.example.omela.model.SaleItem
 
-class FlowersListFragment : Fragment() {
+class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.CategoryClicked {
     private var _binding: FragmentFlowersListBinding? = null
     private val binding
         get() = _binding!!
 
-    private val flowersAdapter = FlowersAdapter()
-    private val categoriesAdapter = CategoriesAdapter()
+    private val flowersAdapter = FlowersAdapter(this)
+    private val categoriesAdapter = CategoriesAdapter(this)
     private val saleAdapter = SaleAdapter()
 
     private val categoriesList by lazy {
@@ -59,35 +60,44 @@ class FlowersListFragment : Fragment() {
                 "НЕВЕСТЕ ДОРОГУ",
                 R.drawable.flower_1,
                 4900,
-                true
+                true,
+                2,
+                "новинка"
             ),
             FlowersItem(
                 "ИСКРЕННОСТЬ",
                 R.drawable.flower_2,
                 5000,
-                true
+                true,
+                3
             ),
             FlowersItem(
                 "ВЛЮБЛЕННОСТЬ",
                 R.drawable.flower_3,
                 7100,
+                false,
+                1
             ),
             FlowersItem(
                 "ЭЛЕГАНТНОСТЬ",
                 R.drawable.flower_4,
                 3300,
-                true
+                true,
+                5
             ),
             FlowersItem(
                 "ВРЕМЯ ЛЮБИТЬ",
                 R.drawable.flower_5,
                 8900,
-                true
+                true,
+                4
             ),
             FlowersItem(
                 "ЛЮБОВЬ",
                 R.drawable.floower_6,
                 5700,
+                false,
+                2
             ),
         )
     }
@@ -196,5 +206,15 @@ class FlowersListFragment : Fragment() {
         flowersAdapter.setList(flowersList)
         categoriesAdapter.setList(categoriesList)
         saleAdapter.setList(saleList)
+    }
+
+    override fun onItemClick(flower: FlowersItem) {
+        val action = FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
+        findNavController().navigate(action)
+    }
+
+    override fun onItemClick(category: CategoriesItem) {
+        val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment(category.category_name)
+        findNavController().navigate(action)
     }
 }

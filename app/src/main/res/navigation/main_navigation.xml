@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_flowersListFragment_to_authorFragment"
             app:destination="@id/authorFragment" />
+        <action
+            android:id="@+id/action_flowersListFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+        <action
+            android:id="@+id/action_flowersListFragment_to_categorieFragment"
+            app:destination="@id/categorieFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -40,7 +46,11 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.omela.FavoritesFragment"
-        android:label="FavoritesFragment" />
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.omela.basket.BasketFragment"
@@ -105,5 +115,27 @@
         <action
             android:id="@+id/action_editAccountFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flowerDetailsFragment"
+        android:name="com.example.omela.main.FlowerDetailsFragment"
+        android:label="FlowerDetailsFragment" >
+        <argument
+            android:name="flower"
+            app:argType="com.example.omela.model.FlowersItem" />
+        <action
+            android:id="@+id/action_flowerDetailsFragment_to_flowersListFragment"
+            app:destination="@id/flowersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categorieFragment"
+        android:name="com.example.omela.main.CategoryFragment"
+        android:label="CategorieFragment" >
+        <action
+            android:id="@+id/action_categorieFragment_to_flowersListFragment"
+            app:destination="@id/flowersListFragment" />
+        <argument
+            android:name="category_name"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.omela.FavoritesFragment
 import com.example.omela.R
 import com.example.omela.databinding.FragmentLoginBinding
 import com.example.omela.main.MainActivity
@@ -32,36 +33,22 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         numberChangeListener()
         auth = FirebaseAuth.getInstance()
+
         with(binding.toolbar) {
-            inflateMenu(R.menu.registration_menu)
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.action_skip -> {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
-                        true
-                    }
-                    else -> false
-                }
+            setNavigationIcon(R.drawable.ic_back_arrow)
+            setNavigationOnClickListener {
+                startActivity(Intent(requireContext(), MainActivity::class.java))
             }
         }
-        with(binding) {
-//            openRegistration.setOnClickListener {
-//                val action = LoginFragmentDirections.actionLoginFragmentToRegistrationFragment()
-//                findNavController().navigate(action)
-//            }
-//            show.setOnClickListener {
-//                Toast.makeText(requireContext(), "${binding.show.tag}", Toast.LENGTH_SHORT).show()
-//            }
-//            show.setOnClickListener { showHidePass() }
 
+        with(binding) {
+            registration.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToRegistrationFragment()
+                findNavController().navigate(action)
+            }
             verifyButton.setOnClickListener {
                 login()
             }
-
-//            if(!editTextPhone.text.isNullOrEmpty() && !registrationPassword.text.isNullOrEmpty()){
-//                verifyButton
-//            }
         }
 
 
@@ -74,6 +61,15 @@ class LoginFragment : Fragment() {
                     background = ContextCompat.getDrawable(
                         requireContext(),
                         R.drawable.button_black
+                    )
+                    isEnabled = true
+                }
+            }
+            else{
+                binding.verifyButton.apply {
+                    background = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.button_gray
                     )
                     isEnabled = true
                 }

@@ -68,6 +68,10 @@
         <item name="android:textSize">14sp</item>
         <item name="background">@drawable/rounded_corner</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
     </style>
 
     <style name="small_text">

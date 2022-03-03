@@ -22,7 +22,7 @@ class SaleAdapter(): RecyclerView.Adapter<SaleAdapter.SaleViewHolder>() {
             listName.text = flowers.flower_name
             listPrice.text = flowers.flower_price.toString()
             listImage.setImageResource(flowers.flower_image)
-            discountRate.text = flowers.discount_rate
+            flowerStatus.text = flowers.discount_rate
             if(flowers.is_favorite) heart.setImageResource(R.drawable.ic_heart_red)
         }
     }
