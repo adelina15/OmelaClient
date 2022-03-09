@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_basketFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_basketFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -88,6 +91,9 @@
         <action
             android:id="@+id/action_orderHistoryFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -137,5 +143,16 @@
         <argument
             android:name="category_name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categorieFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.omela.account.OrderDetailsFragment"
+        android:label="OrderDetailsFragment" >
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
     </fragment>
 </navigation>

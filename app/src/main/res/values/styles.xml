@@ -218,9 +218,11 @@
     </style>
 
     <style name="RecyclerViewDefault">
-        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">16dp</item>
-        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
     </style>
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorPrimary">@color/black</item>

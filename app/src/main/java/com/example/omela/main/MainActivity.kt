@@ -42,32 +42,5 @@ class MainActivity : AppCompatActivity() {
             wic.isAppearanceLightStatusBars = true
             window.statusBarColor = Color.WHITE
         }
-
-//        val homeFragment = FlowersListFragment()
-//        val basketFragment = BasketFragment()
-//        val favoritesFragment = FavoritesFragment()
-//        val accountFragment = AccountFragment()
-//        setCurrentFragment(homeFragment)
-
-//        binding.bottomNavigationView.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.home -> setCurrentFragment(homeFragment)
-//                R.id.basket -> setCurrentFragment(basketFragment)
-//                R.id.favorite -> setCurrentFragment(favoritesFragment)
-//                R.id.account -> setCurrentFragment(accountFragment)
-//            }
-//            true
-//        }
-
-//        val navHostFragment = supportFragmentManager
-//            .findFragmentById(R.id.nav_fragment) as NavHostFragment
-//        navController = navHostFragment.navController
-//    }
-
-//    private fun setCurrentFragment(fragment: Fragment) =
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.nav_fragment,fragment)
-//            commit()
-//        }
     }
 }

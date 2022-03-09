@@ -11,6 +11,5 @@ data class FlowersItem(
     val flower_image: Int,
     val flower_price: Int,
     val is_favorite: Boolean = false,
-    val flower_count: Int,
     val status: String? = null
     ): Parcelable

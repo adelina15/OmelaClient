@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            tools:layout_marginTop="-800dp">
+            tools:layout_marginTop="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -70,11 +70,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewCategories"
+                    style="@style/RecyclerViewDefault"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewCategories">
@@ -87,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="33dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/tops"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategories" />
@@ -125,8 +123,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTops"
                     style="@style/RecyclerViewDefault"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTops">
@@ -139,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/author"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerViewTops" />
@@ -147,8 +143,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewAuthor"
                     style="@style/RecyclerViewDefault"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewAuthor">
@@ -161,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="53dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/sale"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerViewAuthor" />
@@ -169,8 +163,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewSale"
                     style="@style/RecyclerViewDefault"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewSale" />

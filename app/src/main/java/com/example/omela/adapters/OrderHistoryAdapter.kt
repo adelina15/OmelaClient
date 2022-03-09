@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.databinding.HistoryItemBinding
 import com.example.omela.model.HistoryItem
 
-class OrderHistoryAdapter: RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryHolder>() {
+class OrderHistoryAdapter(private val orderClicker: Delegates.OrderClicked): RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryHolder>() {
 
     private var list = mutableListOf<HistoryItem>()
     fun setList (list : MutableList<HistoryItem>){
@@ -36,6 +37,9 @@ class OrderHistoryAdapter: RecyclerView.Adapter<OrderHistoryAdapter.OrderHistory
 
     override fun onBindViewHolder(holder: OrderHistoryHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.historyCard.setOnClickListener {
+            orderClicker.onItemClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int {

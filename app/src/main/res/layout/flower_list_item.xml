@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="186dp"
-        android:layout_height="366dp">
+        android:layout_width="194dp"
+        android:layout_height="364dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
@@ -31,6 +31,7 @@
                     android:id="@+id/list_image"
                     android:layout_width="0dp"
                     android:layout_height="236dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

@@ -92,4 +92,5 @@
     <string name="edit">редактировать профиль</string>
     <string name="editting">редактирование</string>
     <string name="save">сохранить</string>
+    <string name="current_order">текущий заказ</string>
 </resources>

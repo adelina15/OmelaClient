@@ -10,24 +10,23 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.adapters.CategoriesAdapter
 import com.example.omela.adapters.FlowersAdapter
-import com.example.omela.adapters.SaleAdapter
 import com.example.omela.databinding.FragmentFlowersListBinding
 import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
-import com.example.omela.model.SaleItem
 
 class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.CategoryClicked {
     private var _binding: FragmentFlowersListBinding? = null
     private val binding
         get() = _binding!!
 
-    private val flowersAdapter = FlowersAdapter(this)
+    private lateinit var flowersAdapter: FlowersAdapter
     private val categoriesAdapter = CategoriesAdapter(this)
-    private val saleAdapter = SaleAdapter()
+    private lateinit var saleAdapter: FlowersAdapter
 
     private val categoriesList by lazy {
         mutableListOf(
@@ -61,87 +60,82 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
                 R.drawable.flower_1,
                 4900,
                 true,
-                2,
-                "новинка"
             ),
             FlowersItem(
                 "ИСКРЕННОСТЬ",
                 R.drawable.flower_2,
                 5000,
                 true,
-                3
             ),
             FlowersItem(
                 "ВЛЮБЛЕННОСТЬ",
                 R.drawable.flower_3,
                 7100,
                 false,
-                1
             ),
             FlowersItem(
                 "ЭЛЕГАНТНОСТЬ",
                 R.drawable.flower_4,
                 3300,
                 true,
-                5
             ),
             FlowersItem(
                 "ВРЕМЯ ЛЮБИТЬ",
                 R.drawable.flower_5,
                 8900,
                 true,
-                4
             ),
             FlowersItem(
                 "ЛЮБОВЬ",
                 R.drawable.floower_6,
                 5700,
                 false,
-                2
             ),
         )
     }
 
     private val saleList by lazy {
         mutableListOf(
-            SaleItem(
+            FlowersItem(
                 "НЕВЕСТЕ ДОРОГУ",
                 R.drawable.flower_1,
                 4900,
+                false,
                 "-15%",
-                true
             ),
-            SaleItem(
+            FlowersItem(
                 "ИСКРЕННОСТЬ",
                 R.drawable.flower_2,
                 5000,
-                "-9%",
-                true
+                false,
+                "-9%"
             ),
-            SaleItem(
+            FlowersItem(
                 "ВЛЮБЛЕННОСТЬ",
                 R.drawable.flower_3,
                 7100,
+                false,
                 "-20%",
             ),
-            SaleItem(
+            FlowersItem(
                 "ЭЛЕГАНТНОСТЬ",
                 R.drawable.flower_4,
                 3300,
-                "-8%",
-                true
+                false,
+                "-8%"
             ),
-            SaleItem(
+            FlowersItem(
                 "ВРЕМЯ ЛЮБИТЬ",
                 R.drawable.flower_5,
                 8900,
+                false,
                 "-5%",
-                true
             ),
-            SaleItem(
+            FlowersItem(
                 "ЛЮБОВЬ",
                 R.drawable.floower_6,
                 5700,
+                false,
                 "-10%",
             ),
         )
@@ -153,8 +147,9 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
+        flowersAdapter = FlowersAdapter(requireContext(), this)
+        saleAdapter = FlowersAdapter(requireContext(), this)
         init()
         return binding.root
     }
@@ -171,7 +166,8 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
                         true
                     }
                     R.id.action_sort -> {
-                        val action = FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
+                        val action =
+                            FlowersListFragmentDirections.actionFlowersListFragmentToFilterFragment()
                         findNavController().navigate(action)
                         true
                     }
@@ -183,6 +179,18 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
             startActivity(intent)
         }
+        binding.toTopsButton.setOnClickListener {
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("хиты продаж")
+            findNavController().navigate(action)
+        }
+        binding.toAuthorButton.setOnClickListener {
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("авторские букеты")
+            findNavController().navigate(action)
+        }
+        binding.toSaleButton.setOnClickListener {
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("распродажа")
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
@@ -192,15 +200,9 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
 
     private fun init() {
         binding.apply {
-            recyclerViewTops.layoutManager = GridLayoutManager(requireContext(), 2)
             recyclerViewTops.adapter = flowersAdapter
-
-            recyclerViewAuthor.layoutManager = GridLayoutManager(requireContext(), 2)
             recyclerViewAuthor.adapter = flowersAdapter
-
-            recyclerViewSale.layoutManager = GridLayoutManager(requireContext(), 2)
             recyclerViewSale.adapter = saleAdapter
-
             recyclerViewCategories.adapter = categoriesAdapter
         }
         flowersAdapter.setList(flowersList)
@@ -209,12 +211,14 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
     }
 
     override fun onItemClick(flower: FlowersItem) {
-        val action = FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
+        val action =
+            FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
         findNavController().navigate(action)
     }
 
     override fun onItemClick(category: CategoriesItem) {
-        val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment(category.category_name)
+        val action =
+            FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment(category.category_name)
         findNavController().navigate(action)
     }
 }

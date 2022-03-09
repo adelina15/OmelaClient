@@ -55,29 +55,33 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/categories_item.xml" value="0.536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/code.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/comments_item.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/flower_list_item.xml" value="0.536" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/flower_list_item.xml" value="0.4860557768924303" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_account.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_author.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_basket.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_basket.xml" value="0.306640625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_branches.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_categorie.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_category.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_category.xml" value="0.35356200527704484" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_code.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_completed_order.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_current_order.xml" value="0.14537037037037037" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_edit_account.xml" value="0.16799999999999998" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_favorites.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_favorites.xml" value="0.36342592592592593" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_filter.xml" value="0.4" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_flower_details.xml" value="0.30104873534855026" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_flower_details.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_flowers_list.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_need_to_authorize.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_order.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_order_details.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_order_history.xml" value="0.34183673469387754" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_rate.xml" value="0.18055555555555555" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_registration.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/fragment_status.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/history_item.xml" value="0.2670807453416149" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/history_order_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/need_to_authorize.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/order_status.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/ordering.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Omela/app/src/main/res/layout/rate.xml" value="0.264" />

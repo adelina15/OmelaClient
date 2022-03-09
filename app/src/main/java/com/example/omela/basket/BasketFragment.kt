@@ -51,6 +51,10 @@ class BasketFragment : Fragment() {
             val action = BasketFragmentDirections.actionBasketFragmentToOrderFragment()
             findNavController().navigate(action)
         }
+        binding.toCurrentOrderButton.setOnClickListener {
+            val action = BasketFragmentDirections.actionBasketFragmentToStatusFragment()
+            findNavController().navigate(action)
+        }
         return binding.root
     }
 

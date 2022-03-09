@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.databinding.FragmentAccountBinding
-import com.example.omela.main.FilterFragmentDirections
+import com.example.omela.login.NeedToAuthorizeFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
@@ -29,6 +33,15 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val user = Firebase.auth.currentUser
+        if (user == null) {
+            // User is not signed in
+            parentFragmentManager.commit {
+                replace<NeedToAuthorizeFragment>(R.id.nav_fragment)
+                setReorderingAllowed(true)
+                addToBackStack("name") // name can be null
+            }
+        }
         with(binding){
             branchesButton.setOnClickListener {
                 val action = AccountFragmentDirections.actionAccountFragmentToBranchesFragment()
@@ -56,9 +69,14 @@ class AccountFragment : Fragment() {
     private fun alertDialog() {
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
         builder.setTitle("вы действительно хотите выйти?")
-        builder.setMessage("You")
         builder.setPositiveButton("да") { _, _ ->
-            //
+            Firebase.auth.signOut()
+            parentFragmentManager.commit {
+                replace<NeedToAuthorizeFragment>(R.id.nav_fragment)
+                setReorderingAllowed(true)
+                addToBackStack("name") // name can be null
+            }
+
         }
         builder.setNegativeButton("нет") { _, _ ->
             Toast.makeText(requireContext(),

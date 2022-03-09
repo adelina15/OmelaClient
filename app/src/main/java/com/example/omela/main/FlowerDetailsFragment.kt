@@ -1,5 +1,6 @@
 package com.example.omela.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ class FlowerDetailsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
@@ -38,7 +40,7 @@ class FlowerDetailsFragment : Fragment() {
                 status.visibility = View.VISIBLE
                 status.text = args.flower.status
             }
-            price.text = args.flower.flower_price.toString()
+            price.text = "${args.flower.flower_price} c"
         }
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)

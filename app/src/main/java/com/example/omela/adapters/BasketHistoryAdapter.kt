@@ -6,19 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omela.R
+import com.example.omela.databinding.BasketHistoryItemBinding
 import com.example.omela.databinding.BasketItemBinding
 import com.example.omela.model.BasketItem
-import com.example.omela.model.FlowersItem
 
-class BasketAdapter(): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
+class BasketHistoryAdapter(): RecyclerView.Adapter<BasketHistoryAdapter.BasketHistoryViewHolder>() {
 
     private var list = mutableListOf<BasketItem>()
     fun setList (list : MutableList<BasketItem>){
         this.list = list
     }
 
-    class BasketViewHolder(item: View): RecyclerView.ViewHolder(item) {
-        val binding = BasketItemBinding.bind(item)
+    class BasketHistoryViewHolder(item: View): RecyclerView.ViewHolder(item) {
+        val binding = BasketHistoryItemBinding.bind(item)
         @SuppressLint("SetTextI18n")
         fun bind(flowers: BasketItem) = with(binding) {
             basketName.text = flowers.name
@@ -28,12 +28,12 @@ class BasketAdapter(): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketViewHolder {
-        val view = LayoutInflater.from((parent.context)).inflate(R.layout.basket_item, parent, false)
-        return BasketViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketHistoryViewHolder {
+        val view = LayoutInflater.from((parent.context)).inflate(R.layout.basket_history_item, parent, false)
+        return BasketHistoryViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BasketHistoryViewHolder, position: Int) {
         holder.bind(list[position])
     }
 

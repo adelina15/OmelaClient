@@ -1,5 +1,6 @@
 package com.example.omela.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,56 +11,52 @@ import com.example.omela.R
 import com.example.omela.databinding.FlowerListItemBinding
 import com.example.omela.model.FlowersItem
 
-class FlowersAdapter(private val flowerClicker: Delegates.FlowerClicked): RecyclerView.Adapter<FlowersAdapter.FlowersViewHolder>() {
+class FlowersAdapter(
+    private val context: Context,
+    private val flowerClicker: Delegates.FlowerClicked
+) : RecyclerView.Adapter<FlowersAdapter.FlowersViewHolder>() {
 
     private var list = mutableListOf<FlowersItem>()
-    fun setList (list : MutableList<FlowersItem>){
+    fun setList(list: MutableList<FlowersItem>) {
         this.list = list
     }
 
-    class FlowersViewHolder(item: View): RecyclerView.ViewHolder(item) {
+    class FlowersViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = FlowerListItemBinding.bind(item)
-
-        fun bind(flowers:FlowersItem) = with(binding) {
-            var num = 0
+        fun bind(flowers: FlowersItem, context: Context) = with(binding) {
             listName.text = flowers.flower_name
             listPrice.text = flowers.flower_price.toString()
             listImage.setImageResource(flowers.flower_image)
-            if(flowers.is_favorite) heart.setImageResource(R.drawable.ic_heart_red)
+            if (flowers.is_favorite) heart.setImageResource(R.drawable.ic_heart_red)
             if (flowers.status != null) {
-                 flowerStatus.visibility = View.VISIBLE
-                 flowerStatus.text = flowers.status
+                flowerStatus.visibility = View.VISIBLE
+                flowerStatus.text = flowers.status
             }
-
             //logic to hide and show plus, minus and count
             plus.setOnClickListener {
-                if (num < flowers.flower_count) {
-                    num++
-                    minus.visibility = View.VISIBLE
-                    count.visibility = View.VISIBLE
-                    count.text = num.toString()
-                }
-                if(num == flowers.flower_count) plus.visibility = View.INVISIBLE
+                Toast.makeText(context, "Добавлено в корзину", Toast.LENGTH_SHORT).show()
+                minus.visibility = View.VISIBLE
+                count.visibility = View.VISIBLE
+                plus.visibility = View.INVISIBLE
+                count.text = "1"
             }
             minus.setOnClickListener {
-                num--
-                count.text = num.toString()
-                if(num == 0) {
-                    plus.visibility = View.VISIBLE
-                    count.visibility = View.INVISIBLE
-                    minus.visibility = View.INVISIBLE
-                }
+                plus.visibility = View.VISIBLE
+                count.visibility = View.INVISIBLE
+                minus.visibility = View.INVISIBLE
+                count.text = ""
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowersViewHolder {
-        val view = LayoutInflater.from((parent.context)).inflate(R.layout.flower_list_item, parent, false)
+        val view =
+            LayoutInflater.from((parent.context)).inflate(R.layout.flower_list_item, parent, false)
         return FlowersViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FlowersViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], context)
         holder.binding.layout.setOnClickListener {
             flowerClicker.onItemClick(list[position])
         }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.adapters.OrderHistoryAdapter
 import com.example.omela.databinding.FragmentCurrentOrderBinding
@@ -13,13 +15,13 @@ import com.example.omela.databinding.FragmentFlowersListBinding
 import com.example.omela.model.CategoriesItem
 import com.example.omela.model.HistoryItem
 
-class CurrentOrderFragment : Fragment() {
+class CurrentOrderFragment : Fragment(), Delegates.OrderClicked {
 
     private var _binding: FragmentCurrentOrderBinding? = null
     private val binding
         get() = _binding!!
 
-    private val currentOrderAdapter = OrderHistoryAdapter()
+    private val currentOrderAdapter = OrderHistoryAdapter(this)
 
     private val currentOrderList by lazy {
         mutableListOf(
@@ -50,6 +52,11 @@ class CurrentOrderFragment : Fragment() {
     private fun init() {
         binding.currentOrdersRecyclerView.adapter = currentOrderAdapter
         currentOrderAdapter.setList(currentOrderList)
+    }
+
+    override fun onItemClick(historyItem: HistoryItem) {
+        val action = OrderHistoryFragmentDirections.actionOrderHistoryFragmentToOrderDetailsFragment()
+        findNavController().navigate(action)
     }
 
 }
