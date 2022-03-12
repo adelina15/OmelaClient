@@ -5,20 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.fragment.findNavController
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.account.AccountFragmentDirections
 import com.example.omela.adapters.BasketAdapter
 import com.example.omela.databinding.FragmentBasketBinding
+import com.example.omela.login.NeedToAuthorizeFragment
 import com.example.omela.model.BasketItem
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
-class BasketFragment : Fragment() {
+class BasketFragment : Fragment(), Delegates.BasketClicked {
     private var _binding: FragmentBasketBinding? = null
     private val binding
         get() = _binding!!
 
-    private val basketAdapter = BasketAdapter()
+    private val basketAdapter = BasketAdapter(this)
     private val basketList by lazy {
         mutableListOf(
             BasketItem(
@@ -55,6 +63,9 @@ class BasketFragment : Fragment() {
             val action = BasketFragmentDirections.actionBasketFragmentToStatusFragment()
             findNavController().navigate(action)
         }
+        binding.clearButton.setOnClickListener {
+            alertDialog()
+        }
         return binding.root
     }
 
@@ -68,5 +79,43 @@ class BasketFragment : Fragment() {
             recyclerView.adapter = basketAdapter
         }
         basketAdapter.setList(basketList)
+    }
+
+    private fun alertDialog() {
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
+        builder.setTitle("вы действительно хотите очистить корзину?")
+        builder.setPositiveButton("да") { _, _ ->
+            Toast.makeText(requireContext(), "корзина очищена", Toast.LENGTH_SHORT).show()
+//            parentFragmentManager.commit {
+//                replace<Fav>(R.id.nav_fragment)
+//                setReorderingAllowed(true)
+//                addToBackStack("name") // name can be null
+//            }
+        }
+        builder.setNegativeButton("нет") { _, _ ->
+            Toast.makeText(requireContext(), "действие отменено", Toast.LENGTH_SHORT).show()
+        }
+        builder.show()
+    }
+
+    override fun onItemClick(basketItem: BasketItem) {
+        alertDialogDelete()
+    }
+
+    private fun alertDialogDelete() {
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
+        builder.setTitle("вы действительно удалить этот элемент?")
+        builder.setPositiveButton("да") { _, _ ->
+            Toast.makeText(requireContext(), "корзина очищена", Toast.LENGTH_SHORT).show()
+//            parentFragmentManager.commit {
+//                replace<Fav>(R.id.nav_fragment)
+//                setReorderingAllowed(true)
+//                addToBackStack("name") // name can be null
+//            }
+        }
+        builder.setNegativeButton("нет") { _, _ ->
+            Toast.makeText(requireContext(), "действие отменено", Toast.LENGTH_SHORT).show()
+        }
+        builder.show()
     }
 }

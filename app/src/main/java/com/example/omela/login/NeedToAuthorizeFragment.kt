@@ -28,8 +28,11 @@ class NeedToAuthorizeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.logInButton.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
+        binding.registrationButton.setOnClickListener {
+            startActivity(Intent(requireContext(), RegistrationActivity::class.java))
         }
     }
 

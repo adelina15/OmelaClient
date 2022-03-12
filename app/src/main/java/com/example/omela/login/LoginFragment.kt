@@ -42,10 +42,6 @@ class LoginFragment : Fragment() {
         }
 
         with(binding) {
-            registration.setOnClickListener {
-                val action = LoginFragmentDirections.actionLoginFragmentToRegistrationFragment()
-                findNavController().navigate(action)
-            }
             verifyButton.setOnClickListener {
                 login()
             }

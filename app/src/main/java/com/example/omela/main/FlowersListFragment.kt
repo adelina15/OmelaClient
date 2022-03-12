@@ -184,7 +184,7 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
             findNavController().navigate(action)
         }
         binding.toAuthorButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("авторские букеты")
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("все букеты")
             findNavController().navigate(action)
         }
         binding.toSaleButton.setOnClickListener {

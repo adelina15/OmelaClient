@@ -11,11 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Omela">
         <activity
+            android:name=".login.RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,8 +29,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-            tools:ignore="Instantiatable">
-        </activity>
+            tools:ignore="Instantiatable"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -35,6 +35,7 @@ class OrderFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
+        
         binding.confirmButton.setOnClickListener {
             val action = OrderFragmentDirections.actionOrderFragmentToStatusFragment()
             findNavController().navigate(action)

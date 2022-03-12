@@ -50,7 +50,7 @@
             android:id="@+id/verifyButton"
             style="@style/login_button"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/button_gray"
+            android:background="@drawable/button_black"
             android:text="@string/get_code"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -60,6 +60,10 @@ class OrderDetailsFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
+        binding.orderAgain.setOnClickListener {
+            val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

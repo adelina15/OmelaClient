@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.omela.Delegates
 import com.example.omela.R
 import com.example.omela.databinding.BasketItemBinding
 import com.example.omela.model.BasketItem
 import com.example.omela.model.FlowersItem
 
-class BasketAdapter(): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
+class BasketAdapter(val basketClicked: Delegates.BasketClicked): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
     private var list = mutableListOf<BasketItem>()
     fun setList (list : MutableList<BasketItem>){
@@ -35,6 +36,9 @@ class BasketAdapter(): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.delete.setOnClickListener {
+            basketClicked.onItemClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int {

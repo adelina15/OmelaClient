@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/authorFragment"
-        android:name="com.example.omela.AuthorFragment"
+        android:name="com.example.omela.main.AuthorFragment"
         android:label="fragment_author"
         tools:layout="@layout/fragment_author" >
         <action
@@ -100,19 +100,19 @@
         android:name="com.example.omela.basket.OrderFragment"
         android:label="OrderFragment" >
         <action
-            android:id="@+id/action_orderFragment_to_statusFragment"
-            app:destination="@id/statusFragment" />
-        <action
             android:id="@+id/action_orderFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_orderFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
     </fragment>
     <fragment
         android:id="@+id/statusFragment"
         android:name="com.example.omela.basket.StatusFragment"
         android:label="StatusFragment" >
         <action
-            android:id="@+id/action_statusFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
+            android:id="@+id/action_statusFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
     </fragment>
     <fragment
         android:id="@+id/editAccountFragment"
@@ -154,5 +154,8 @@
         <action
             android:id="@+id/action_orderDetailsFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
 </navigation>

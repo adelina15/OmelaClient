@@ -1,5 +1,6 @@
 package com.example.omela
 
+import com.example.omela.model.BasketItem
 import com.example.omela.model.CategoriesItem
 import com.example.omela.model.FlowersItem
 import com.example.omela.model.HistoryItem
@@ -16,4 +17,9 @@ interface Delegates {
     interface OrderClicked{
         fun onItemClick(historyItem: HistoryItem)
     }
+
+    interface BasketClicked{
+        fun onItemClick(basketItem: BasketItem)
+    }
+
 }
