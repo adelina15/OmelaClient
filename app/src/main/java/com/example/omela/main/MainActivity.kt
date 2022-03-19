@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -35,14 +34,5 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
         navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
-
-        //Make status bar white
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val window: Window = window
-            val decorView: View = window.decorView
-            val wic = WindowInsetsControllerCompat(window, decorView)
-            wic.isAppearanceLightStatusBars = true
-            window.statusBarColor = Color.WHITE
-        }
     }
 }

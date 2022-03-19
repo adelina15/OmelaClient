@@ -16,16 +16,6 @@ import com.example.omela.main.MainActivity
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //Make status bar white
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val window: Window = window
-            val decorView: View = window.decorView
-            val wic = WindowInsetsControllerCompat(window, decorView)
-            wic.isAppearanceLightStatusBars = true
-            window.statusBarColor = Color.WHITE
-        }
-
         Handler(Looper.getMainLooper()).postDelayed({
             // This method will be executed once the timer is over
             // Start your app main activity

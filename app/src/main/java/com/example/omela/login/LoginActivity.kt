@@ -18,14 +18,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        //Make status bar white
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val window: Window = window
-            val decorView: View = window.decorView
-            val wic = WindowInsetsControllerCompat(window, decorView)
-            wic.isAppearanceLightStatusBars = true
-            window.statusBarColor = Color.WHITE
-        }
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
