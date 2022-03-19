@@ -45,8 +45,7 @@ class FlowerDetailsFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = FlowerDetailsFragmentDirections.actionFlowerDetailsFragmentToFlowersListFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
     }

@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.databinding.FragmentBranchesBinding
-import com.example.omela.main.FilterFragmentDirections
 
 class BranchesFragment : Fragment() {
     private var _binding: FragmentBranchesBinding? = null
@@ -29,8 +28,7 @@ class BranchesFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = BranchesFragmentDirections.actionBranchesFragmentToAccountFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
     }

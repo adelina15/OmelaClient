@@ -79,13 +79,12 @@ class CategoryFragment : Fragment(), Delegates.FlowerClicked {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
-            categoryName.text = args.categoryName
+            categoryName.text = args.name
         }
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = CategoryFragmentDirections.actionCategorieFragmentToFlowersListFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
     }
@@ -104,7 +103,7 @@ class CategoryFragment : Fragment(), Delegates.FlowerClicked {
     }
 
     override fun onItemClick(flower: FlowersItem) {
-        val action = CategoryFragmentDirections.actionCategorieFragmentToFlowerDetailsFragment(flower)
+        val action = CategoryFragmentDirections.actionCategoryFragmentToFlowerDetailsFragment(flower)
         findNavController().navigate(action)
     }
 }

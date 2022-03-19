@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/flowersListFragment">
+
+    <fragment
+        android:id="@+id/flowersListFragment"
+        android:name="com.example.omela.main.FlowersListFragment"
+        android:label="FlowersListFragment" >
+        <action
+            android:id="@+id/action_flowersListFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_flowersListFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_flowersListFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.omela.main.FilterFragment"
+        android:label="FilterFragment" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.omela.main.CategoryFragment"
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_categoryFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/flowerDetailsFragment"
+        android:name="com.example.omela.main.FlowerDetailsFragment"
+        android:label="FlowerDetailsFragment" >
+        <argument
+            android:name="flower"
+            app:argType="com.example.omela.model.FlowersItem" />
+    </fragment>
+</navigation>

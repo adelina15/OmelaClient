@@ -180,15 +180,15 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
             startActivity(intent)
         }
         binding.toTopsButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("хиты продаж")
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("хиты продаж")
             findNavController().navigate(action)
         }
         binding.toAuthorButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("все букеты")
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("все букеты")
             findNavController().navigate(action)
         }
         binding.toSaleButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment("распродажа")
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("распродажа")
             findNavController().navigate(action)
         }
     }
@@ -218,7 +218,7 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
 
     override fun onItemClick(category: CategoriesItem) {
         val action =
-            FlowersListFragmentDirections.actionFlowersListFragmentToCategorieFragment(category.category_name)
+            FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.category_name)
         findNavController().navigate(action)
     }
 }

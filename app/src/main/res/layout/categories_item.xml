@@ -7,12 +7,13 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/layout"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/teal"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="false"
@@ -20,28 +21,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/layout"
+            <TextView
+                android:id="@+id/categories_text"
+                style="@style/header"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="минимализм" />
 
-
-                <ImageView
-                    android:id="@+id/categories_image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:srcCompat="@drawable/cat_minimal" />
-
-                <TextView
-                    android:id="@+id/categories_text"
-                    style="@style/small_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="6dp"
-                    android:text="минимализм" />
-            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 

@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val bottomNavigationView = binding.bottomNavigationView
-        navController = findNavController(R.id.nav_fragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
+        navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
 
         //Make status bar white

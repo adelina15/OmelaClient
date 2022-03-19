@@ -30,8 +30,7 @@ class EditAccountFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = EditAccountFragmentDirections.actionEditAccountFragmentToAccountFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
         binding.saveButton.setOnClickListener {

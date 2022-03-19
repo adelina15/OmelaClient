@@ -22,7 +22,6 @@ class CategoriesAdapter(private val categoryClicker: Delegates.CategoryClicked):
 
         fun bind(category: CategoriesItem) = with(binding){
             categoriesText.text = category.category_name
-            categoriesImage.setImageResource(category.category_image)
         }
     }
 

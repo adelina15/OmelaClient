@@ -52,9 +52,7 @@ class OrderHistoryFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action =
-                    OrderHistoryFragmentDirections.actionOrderHistoryFragmentToAccountFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
     }

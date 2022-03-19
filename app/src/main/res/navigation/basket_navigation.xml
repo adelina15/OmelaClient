@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/basket_navigation"
+    app:startDestination="@id/basketFragment">
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.omela.basket.BasketFragment"
+        android:label="BasketFragment" >
+        <action
+            android:id="@+id/action_basketFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_basketFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.omela.basket.OrderFragment"
+        android:label="OrderFragment" >
+        <action
+            android:id="@+id/action_orderFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.example.omela.basket.StatusFragment"
+        android:label="StatusFragment" />
+</navigation>

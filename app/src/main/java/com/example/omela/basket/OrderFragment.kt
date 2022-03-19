@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.R
-import com.example.omela.account.AccountFragmentDirections
-import com.example.omela.account.BranchesFragmentDirections
 import com.example.omela.databinding.FragmentOrderBinding
 
 class OrderFragment : Fragment() {
@@ -31,8 +29,8 @@ class OrderFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = OrderFragmentDirections.actionOrderFragmentToBasketFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
+
             }
         }
         

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omela.Delegates
 import com.example.omela.R
@@ -16,6 +17,7 @@ class BasketAdapter(val basketClicked: Delegates.BasketClicked): RecyclerView.Ad
     private var list = mutableListOf<BasketItem>()
     fun setList (list : MutableList<BasketItem>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     class BasketViewHolder(item: View): RecyclerView.ViewHolder(item) {
@@ -25,6 +27,7 @@ class BasketAdapter(val basketClicked: Delegates.BasketClicked): RecyclerView.Ad
             basketName.text = flowers.name
             basketDiscount.text = (if (flowers.discount == null) {""} else {"-${flowers.discount}%"})
             basketImage.setImageResource(flowers.image)
+//            basketImage.loadWithGlide(flowers.image)
             basketPrice.text = "${flowers.price} с"
         }
     }
@@ -45,3 +48,10 @@ class BasketAdapter(val basketClicked: Delegates.BasketClicked): RecyclerView.Ad
         return list.size
     }
 }
+
+//fun ImageView.loadWithGlide(url: String){
+//    Glide.with(this)
+//        .load(url)
+//        .placeholder() //if there is no image
+//        .into(this)
+//}

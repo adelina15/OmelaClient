@@ -56,12 +56,11 @@ class OrderDetailsFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderHistoryFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
         binding.orderAgain.setOnClickListener {
-            val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderFragment()
+            val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderFragment2()
             findNavController().navigate(action)
         }
     }

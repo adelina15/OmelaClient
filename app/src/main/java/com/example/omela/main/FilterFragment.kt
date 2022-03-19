@@ -30,8 +30,7 @@ class FilterFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = FilterFragmentDirections.actionFilterFragmentToFlowersListFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
     }

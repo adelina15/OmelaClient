@@ -73,7 +73,7 @@ class FavoritesFragment : Fragment(), Delegates.FlowerClicked {
     }
 
     override fun onItemClick(flower: FlowersItem) {
-        val action = FavoritesFragmentDirections.actionFavoritesFragmentToFlowerDetailsFragment(flower)
+        val action = FavoritesFragmentDirections.actionFavoritesFragmentToFlowerDetailsFragment2(flower)
         findNavController().navigate(action)
     }
 }

@@ -51,15 +51,17 @@ class CodeFragment : Fragment() {
 
             // Этот метод вызывается после завершения проверки
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                if(credential.smsCode != null){
+                    binding.editTextCode.setText(credential.smsCode)
+                }
                 startActivity(Intent(requireContext(), MainActivity::class.java))
-//                finish()
-                Log.d("GFG", "Верификация прошла успешно")
+                Log.d("Code", "Верификация прошла успешно")
             }
 
             // Вызывается, когда проверка не удалась
             override fun onVerificationFailed(e: FirebaseException) {
                 Toast.makeText(requireContext(), "${e.message}", Toast.LENGTH_SHORT).show()
-                Log.d("GFG", "Верификация не удалась $e")
+                Log.d("Code", "Верификация не удалась $e")
             }
 
             // При отправке кода Firebase вызывается этот метод
