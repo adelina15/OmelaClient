@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.omela.FavoritesFragment"
+        android:name="com.example.omela.view.FavoritesFragment"
         android:label="FavoritesFragment" >
         <action
             android:id="@+id/action_favoritesFragment_to_flowerDetailsFragment2"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/flowerDetailsFragment2"
-        android:name="com.example.omela.main.FlowerDetailsFragment"
+        android:name="com.example.omela.view.main.FlowerDetailsFragment"
         android:label="FlowerDetailsFragment" >
         <argument
             android:name="flower"

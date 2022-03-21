@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/flowersListFragment"
-        android:name="com.example.omela.main.FlowersListFragment"
+        android:name="com.example.omela.view.main.FlowersListFragment"
         android:label="FlowersListFragment" >
         <action
             android:id="@+id/action_flowersListFragment_to_filterFragment"
@@ -20,11 +20,11 @@
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
-        android:name="com.example.omela.main.FilterFragment"
+        android:name="com.example.omela.view.main.FilterFragment"
         android:label="FilterFragment" />
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.omela.main.CategoryFragment"
+        android:name="com.example.omela.view.main.CategoryFragment"
         android:label="CategoryFragment" >
         <action
             android:id="@+id/action_categoryFragment_to_flowerDetailsFragment"
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/flowerDetailsFragment"
-        android:name="com.example.omela.main.FlowerDetailsFragment"
+        android:name="com.example.omela.view.main.FlowerDetailsFragment"
         android:label="FlowerDetailsFragment" >
         <argument
             android:name="flower"

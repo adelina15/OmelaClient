@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.omela.login.RegistrationFragment"
+        android:name="com.example.omela.view.login.RegistrationFragment"
         android:label="RegistrationFragment" >
         <action
             android:id="@+id/action_registrationFragment_to_codeFragment2"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/codeFragment2"
-        android:name="com.example.omela.login.CodeFragment"
+        android:name="com.example.omela.view.login.CodeFragment"
         android:label="CodeFragment" >
         <argument
             android:name="number"

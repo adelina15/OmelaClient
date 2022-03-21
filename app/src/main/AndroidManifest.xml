@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Omela" >
         <activity
-            android:name=".login.RegistrationActivity"
+            android:name="com.example.omela.view.login.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme" >
             <intent-filter>
@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.example.omela.view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.example.omela.view.login.LoginActivity"
             android:exported="true"
             tools:ignore="Instantiatable" >
         </activity>

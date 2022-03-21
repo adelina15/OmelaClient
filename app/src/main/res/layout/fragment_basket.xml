@@ -90,16 +90,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <TextView
-                    android:id="@+id/textView12"
-                    style="@style/small_text_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/placeholder"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintTop_toTopOf="@+id/textView11" />
-
-                <TextView
                     android:id="@+id/sum"
                     style="@style/small_text"
                     android:layout_width="wrap_content"
@@ -110,7 +100,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView10" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/discount"
                     style="@style/small_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,7 +122,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/total"
                     style="@style/header_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
