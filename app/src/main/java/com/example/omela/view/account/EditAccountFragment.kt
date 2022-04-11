@@ -32,8 +32,7 @@ class EditAccountFragment : Fragment() {
             }
         }
         binding.saveButton.setOnClickListener {
-            val action =
-                com.example.omela.view.account.EditAccountFragmentDirections.actionEditAccountFragmentToAccountFragment()
+            val action = EditAccountFragmentDirections.actionEditAccountFragmentToAccountFragment()
             findNavController().navigate(action)
         }
     }

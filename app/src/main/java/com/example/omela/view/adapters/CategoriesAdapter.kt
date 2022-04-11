@@ -11,16 +11,18 @@ import com.example.omela.data.model.CategoriesItem
 
 class CategoriesAdapter(private val categoryClicker: Delegates.CategoryClicked): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
-    private var list = mutableListOf<CategoriesItem>()
-    fun setList (list : MutableList<CategoriesItem>){
+    private var list = listOf<CategoriesItem>()
+
+    fun setList (list : List<CategoriesItem>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     class CategoryViewHolder(item: View): RecyclerView.ViewHolder(item)  {
         val binding = CategoriesItemBinding.bind(item)
 
         fun bind(category: CategoriesItem) = with(binding){
-            categoriesText.text = category.category_name
+            categoriesText.text = category.name
         }
     }
 

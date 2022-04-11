@@ -8,21 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.omela.R
 import com.example.omela.databinding.BasketHistoryItemBinding
 import com.example.omela.data.model.BasketItem
+import com.example.omela.data.model.BouquetItem
 
 class BasketHistoryAdapter(): RecyclerView.Adapter<BasketHistoryAdapter.BasketHistoryViewHolder>() {
 
-    private var list = mutableListOf<BasketItem>()
-    fun setList (list : MutableList<BasketItem>){
+    private var list = mutableListOf<BouquetItem>()
+    fun setList (list : MutableList<BouquetItem>){
         this.list = list
     }
 
     class BasketHistoryViewHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = BasketHistoryItemBinding.bind(item)
         @SuppressLint("SetTextI18n")
-        fun bind(flowers: BasketItem) = with(binding) {
+        fun bind(flowers: BouquetItem) = with(binding) {
             basketName.text = flowers.name
             basketDiscount.text = (if (flowers.discount == null) {""} else {"-${flowers.discount}%"})
-            basketImage.setImageResource(flowers.image)
+//            basketImage.setImageResource(flowers.image)
             basketPrice.text = "${flowers.price} с"
         }
     }

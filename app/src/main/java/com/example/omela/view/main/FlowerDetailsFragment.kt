@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.omela.R
 import com.example.omela.databinding.FragmentFlowerDetailsBinding
 
@@ -32,14 +33,15 @@ class FlowerDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
-            name.text = args.flower.flower_name
-            image.setImageResource(args.flower.flower_image)
-            if(args.flower.is_favorite) isFavorite.setImageResource(R.drawable.ic_heart_red)
-            if(args.flower.status != null) {
+            name.text = args.bouquet.name
+            description.text = args.bouquet.description
+            Glide.with(requireContext()).load(args.bouquet.photos[0]).into(image)
+//            if(args.bouquet.is_favorite) isFavorite.setImageResource(R.drawable.ic_heart_red)
+            if(args.bouquet.discount != 0) {
                 status.visibility = View.VISIBLE
-                status.text = args.flower.status
+                status.text = "- ${args.bouquet.discount} %"
             }
-            price.text = "${args.flower.flower_price} c"
+            price.text = "${args.bouquet.price} c"
         }
         with(binding.toolbar) {
             setNavigationIcon(R.drawable.ic_back_arrow)

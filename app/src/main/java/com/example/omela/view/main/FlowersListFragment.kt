@@ -16,6 +16,9 @@ import com.example.omela.view.adapters.FlowersAdapter
 import com.example.omela.databinding.FragmentFlowersListBinding
 import com.example.omela.data.model.CategoriesItem
 import com.example.omela.data.model.FlowersItem
+import com.example.omela.viewmodel.BouquetsViewModel
+import com.example.omela.viewmodel.CategoriesViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.CategoryClicked {
     private var _binding: FragmentFlowersListBinding? = null
@@ -26,30 +29,11 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
     private val categoriesAdapter = CategoriesAdapter(this)
     private lateinit var saleAdapter: FlowersAdapter
 
-    private val categoriesList by lazy {
-        mutableListOf(
-            CategoriesItem(
-                "минимализм",
-                R.drawable.cat_minimal
-            ),
-            CategoriesItem(
-                "шебби-шик",
-                R.drawable.cat_shik
-            ),
-            CategoriesItem(
-                "рустик",
-                R.drawable.cat_3
-            ),
-            CategoriesItem(
-                "лофт",
-                R.drawable.cat_4
-            ),
-            CategoriesItem(
-                "бохо",
-                R.drawable.cat_shik
-            ),
-        )
-    }
+    private val categoriesViewModel by viewModel<CategoriesViewModel>()
+
+//    private val categoriesList by lazy {
+//
+//    }
 
     private val flowersList by lazy {
         mutableListOf(
@@ -173,22 +157,26 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
                 }
             }
         }
+        lifecycle.addObserver(categoriesViewModel)
+        categoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner){
+            categoriesAdapter.setList(it.toList())
+        }
         binding.callButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
             startActivity(intent)
         }
-        binding.toTopsButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("хиты продаж")
-            findNavController().navigate(action)
-        }
+//        binding.toTopsButton.setOnClickListener {
+//            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("хиты продаж", flowersList)
+//            findNavController().navigate(action)
+//        }
         binding.toAuthorButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("все букеты")
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToAllBouquetsFragment()
             findNavController().navigate(action)
         }
-        binding.toSaleButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("распродажа")
-            findNavController().navigate(action)
-        }
+//        binding.toSaleButton.setOnClickListener {
+//            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("распродажа")
+//            findNavController().navigate(action)
+//        }
     }
 
     override fun onDestroyView() {
@@ -204,19 +192,17 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
             recyclerViewCategories.adapter = categoriesAdapter
         }
         flowersAdapter.setList(flowersList)
-        categoriesAdapter.setList(categoriesList)
         saleAdapter.setList(saleList)
     }
 
     override fun onItemClick(flower: FlowersItem) {
-        val action =
-            FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
-        findNavController().navigate(action)
+//        val action =
+//            FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
+//        findNavController().navigate(action)
     }
 
     override fun onItemClick(category: CategoriesItem) {
-        val action =
-            FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.category_name)
+        val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.name, category.bouquets)
         findNavController().navigate(action)
     }
 }

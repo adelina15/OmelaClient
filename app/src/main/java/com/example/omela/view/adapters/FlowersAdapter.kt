@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omela.view.Delegates
 import com.example.omela.R
+import com.example.omela.data.model.BouquetItem
 import com.example.omela.databinding.FlowerListItemBinding
 import com.example.omela.data.model.FlowersItem
 
@@ -54,7 +56,7 @@ class FlowersAdapter(
             LayoutInflater.from((parent.context)).inflate(R.layout.flower_list_item, parent, false)
         return FlowersViewHolder(view)
     }
-
+//"https://res.cloudinary.com/hoifu2mlw/image/upload/v1648229203/v4cblaflav0pgnjpgnk0.jpg"
     override fun onBindViewHolder(holder: FlowersViewHolder, position: Int) {
         holder.bind(list[position], context)
         holder.binding.layout.setOnClickListener {

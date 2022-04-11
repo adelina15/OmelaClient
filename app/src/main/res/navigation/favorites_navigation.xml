@@ -17,7 +17,7 @@
         android:name="com.example.omela.view.main.FlowerDetailsFragment"
         android:label="FlowerDetailsFragment" >
         <argument
-            android:name="flower"
-            app:argType="com.example.omela.model.FlowersItem" />
+            android:name="bouquet"
+            app:argType="com.example.omela.data.model.BouquetItem" />
     </fragment>
 </navigation>

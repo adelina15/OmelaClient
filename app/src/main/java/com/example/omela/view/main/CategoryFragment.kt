@@ -11,59 +11,18 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.omela.view.Delegates
 import com.example.omela.R
-import com.example.omela.view.adapters.FlowersAdapter
+import com.example.omela.data.model.BouquetItem
 import com.example.omela.databinding.FragmentCategoryBinding
-import com.example.omela.data.model.FlowersItem
+import com.example.omela.view.adapters.BouquetsAdapter
 
-class CategoryFragment : Fragment(), Delegates.FlowerClicked {
+class CategoryFragment : Fragment(), Delegates.BouquetClicked {
 
     private val args by navArgs<CategoryFragmentArgs>()
     private var _binding: FragmentCategoryBinding? = null
     private val binding
         get() = _binding!!
 
-    private lateinit var flowersAdapter: FlowersAdapter
-
-    private val flowersList by lazy {
-        mutableListOf(
-            FlowersItem(
-                "НЕВЕСТЕ ДОРОГУ",
-                R.drawable.flower_1,
-                4900,
-                true,
-            ),
-            FlowersItem(
-                "ИСКРЕННОСТЬ",
-                R.drawable.flower_2,
-                5000,
-                true,
-            ),
-            FlowersItem(
-                "ВЛЮБЛЕННОСТЬ",
-                R.drawable.flower_3,
-                7100,
-                false,
-            ),
-            FlowersItem(
-                "ЭЛЕГАНТНОСТЬ",
-                R.drawable.flower_4,
-                3300,
-                true,
-            ),
-            FlowersItem(
-                "ВРЕМЯ ЛЮБИТЬ",
-                R.drawable.flower_5,
-                8900,
-                true,
-            ),
-            FlowersItem(
-                "ЛЮБОВЬ",
-                R.drawable.floower_6,
-                5700,
-                false,
-            ),
-        )
-    }
+    private lateinit var bouquetsAdapter: BouquetsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +30,7 @@ class CategoryFragment : Fragment(), Delegates.FlowerClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
-        flowersAdapter = FlowersAdapter(requireContext(), this)
+        bouquetsAdapter = BouquetsAdapter(requireContext(), this)
         init()
         return binding.root
     }
@@ -97,13 +56,13 @@ class CategoryFragment : Fragment(), Delegates.FlowerClicked {
     private fun init() {
         binding.apply {
             flowersInCategoryRv.layoutManager = GridLayoutManager(requireContext(), 2)
-            flowersInCategoryRv.adapter = flowersAdapter
+            flowersInCategoryRv.adapter = bouquetsAdapter
         }
-        flowersAdapter.setList(flowersList)
+        bouquetsAdapter.setData(args.bouquets)
     }
 
-    override fun onItemClick(flower: FlowersItem) {
-        val action = CategoryFragmentDirections.actionCategoryFragmentToFlowerDetailsFragment(flower)
+    override fun onItemClick(bouquet: BouquetItem) {
+        val action = CategoryFragmentDirections.actionCategoryFragmentToFlowerDetailsFragment(bouquet)
         findNavController().navigate(action)
     }
 }

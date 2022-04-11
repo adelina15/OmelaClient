@@ -1,6 +1,8 @@
 package com.example.omela.data.model
 
 data class CategoriesItem(
-    val category_name: String,
-    val category_image: Int,
+    val bouquets: Array<BouquetItem>,
+    val degree: Int,
+    val id: Int,
+    val name: String
 )

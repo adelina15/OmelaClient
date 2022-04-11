@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.databinding.FragmentAccountBinding
 import com.example.omela.view.login.NeedToAuthorizeFragment
@@ -43,21 +44,18 @@ class AccountFragment : Fragment() {
         }
         with(binding){
             branchesButton.setOnClickListener {
-                val action =
-                    com.example.omela.view.account.AccountFragmentDirections.actionAccountFragmentToBranchesFragment()
+                val action = AccountFragmentDirections.actionAccountFragmentToBranchesFragment()
                 findNavController().navigate(action)
             }
             editButton.setOnClickListener {
-                val action =
-                    com.example.omela.view.account.AccountFragmentDirections.actionAccountFragmentToEditAccountFragment()
+                val action = AccountFragmentDirections.actionAccountFragmentToEditAccountFragment()
                 findNavController().navigate(action)
             }
             logOutButton.setOnClickListener {
                 alertDialog()
             }
             historyButton.setOnClickListener {
-                val action =
-                    com.example.omela.view.account.AccountFragmentDirections.actionAccountFragmentToOrderHistoryFragment()
+                val action =AccountFragmentDirections.actionAccountFragmentToOrderHistoryFragment()
                 findNavController().navigate(action)
             }
         }

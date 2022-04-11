@@ -19,26 +19,26 @@ class OrderDetailsFragment : Fragment() {
         get() = _binding!!
 
     private val basketHistoryAdapter = BasketHistoryAdapter()
-    private val basketHistoryList by lazy {
-        mutableListOf(
-            BasketItem(
-                "ПРИКОСНОВЕНИЕ",
-                R.drawable.flower_1,
-                8000,
-                15
-            ),
-            BasketItem(
-                "ИСКРЕННОСТЬ",
-                R.drawable.flower_2,
-                6800,
-            ),
-            BasketItem(
-                "ЧИСТОЕ СЕРДЦЕ",
-                R.drawable.flower_3,
-                4000,
-            )
-        )
-    }
+//    private val basketHistoryList by lazy {
+//        mutableListOf(
+//            BasketItem(
+//                "ПРИКОСНОВЕНИЕ",
+//                R.drawable.flower_1,
+//                8000,
+//                15
+//            ),
+//            BasketItem(
+//                "ИСКРЕННОСТЬ",
+//                R.drawable.flower_2,
+//                6800,
+//            ),
+//            BasketItem(
+//                "ЧИСТОЕ СЕРДЦЕ",
+//                R.drawable.flower_3,
+//                4000,
+//            )
+//        )
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +73,7 @@ class OrderDetailsFragment : Fragment() {
         binding.apply {
             recyclerView.adapter = basketHistoryAdapter
         }
-        basketHistoryAdapter.setList(basketHistoryList)
+//        basketHistoryAdapter.setList(basketHistoryList)
     }
 
 }

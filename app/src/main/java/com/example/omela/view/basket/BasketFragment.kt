@@ -1,6 +1,7 @@
 package com.example.omela.view.basket
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,39 +9,32 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.room.Dao
 import com.example.omela.view.Delegates
 import com.example.omela.R
+import com.example.omela.application.MyApplication
 import com.example.omela.view.adapters.BasketAdapter
 import com.example.omela.databinding.FragmentBasketBinding
 import com.example.omela.data.model.BasketItem
+import com.example.omela.data.model.BouquetItem
+import com.example.omela.data.repository.DatabaseRepository
+import com.example.omela.viewmodel.CategoriesViewModel
+import com.example.omela.viewmodel.DatabaseViewModel
+import com.example.omela.viewmodel.OneBouquetViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class BasketFragment : Fragment(), Delegates.BasketClicked {
+class BasketFragment : Fragment(), Delegates.BouquetClicked {
     private var _binding: FragmentBasketBinding? = null
     private val binding
         get() = _binding!!
 
     private val basketAdapter = BasketAdapter(this)
-    private val basketList by lazy {
-        mutableListOf(
-            BasketItem(
-                "ПРИКОСНОВЕНИЕ",
-                R.drawable.flower_1,
-                8000,
-                15
-            ),
-            BasketItem(
-                "ИСКРЕННОСТЬ",
-                R.drawable.flower_2,
-                6800,
-            ),
-            BasketItem(
-                "ЧИСТОЕ СЕРДЦЕ",
-                R.drawable.flower_3,
-                4000,
-            )
-        )
-    }
+//    private val oneBouquetViewModel by viewModel<OneBouquetViewModel>()
+//    private val databaseViewModel by viewModel<DatabaseViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +43,11 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_basket, container, false)
         init()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.orderButton.setOnClickListener {
             val action = BasketFragmentDirections.actionBasketFragmentToOrderFragment()
             findNavController().navigate(action)
@@ -60,8 +59,20 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         binding.clearButton.setOnClickListener {
             alertDialog()
         }
-        return binding.root
+
+//        var list = databaseViewModel.getAllProductsFromRoom()
+//        Log.i("list", list.toString())
+//        val bouquetList: MutableList<BouquetItem> = mutableListOf()
+//        for (e in list) {
+//            oneBouquetViewModel.getBouquetById(e.id)
+//            bouquetList.add(oneBouquetViewModel.bouquet)
+//        }
+//        basketAdapter.setList(bouquetList)
+//        if (list.isEmpty()) {
+//            Toast.makeText(requireContext(), "No items", Toast.LENGTH_SHORT).show()
+//        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -72,7 +83,6 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         binding.apply {
             recyclerView.adapter = basketAdapter
         }
-        basketAdapter.setList(basketList)
     }
 
     private fun alertDialog() {
@@ -92,10 +102,6 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         builder.show()
     }
 
-    override fun onItemClick(basketItem: BasketItem) {
-        alertDialogDelete()
-    }
-
     private fun alertDialogDelete() {
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
         builder.setTitle("вы действительно удалить этот элемент?")
@@ -111,5 +117,9 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
             Toast.makeText(requireContext(), "действие отменено", Toast.LENGTH_SHORT).show()
         }
         builder.show()
+    }
+
+    override fun onItemClick(bouquet: BouquetItem) {
+        alertDialogDelete()
     }
 }

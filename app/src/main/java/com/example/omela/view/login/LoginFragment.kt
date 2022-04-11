@@ -1,14 +1,17 @@
 package com.example.omela.view.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.databinding.FragmentLoginBinding
+import com.example.omela.view.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {

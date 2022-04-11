@@ -1,8 +1,10 @@
 package com.example.omela.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "basketitem")
 data class BasketItem (
-    val name: String,
-    val image: Int,
-    val price: Int,
-    val discount: Int? = null,
+    @PrimaryKey
+    val id: Int
     )
