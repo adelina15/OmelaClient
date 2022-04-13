@@ -3,125 +3,49 @@ package com.example.omela.view.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.omela.view.Delegates
 import com.example.omela.R
+import com.example.omela.data.model.BasketItem
+import com.example.omela.data.model.BouquetItem
 import com.example.omela.view.adapters.CategoriesAdapter
 import com.example.omela.view.adapters.FlowersAdapter
 import com.example.omela.databinding.FragmentFlowersListBinding
 import com.example.omela.data.model.CategoriesItem
 import com.example.omela.data.model.FlowersItem
+import com.example.omela.view.adapters.BouquetsAdapter
 import com.example.omela.viewmodel.BouquetsViewModel
 import com.example.omela.viewmodel.CategoriesViewModel
+import com.example.omela.viewmodel.DatabaseViewModel
+import com.example.omela.viewmodel.SaleBouquetsViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.CategoryClicked {
+class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.CategoryClicked,
+    Delegates.ViewClicked {
     private var _binding: FragmentFlowersListBinding? = null
     private val binding
         get() = _binding!!
 
-    private lateinit var flowersAdapter: FlowersAdapter
-    private val categoriesAdapter = CategoriesAdapter(this)
-    private lateinit var saleAdapter: FlowersAdapter
+    private val catalogViewModel by viewModel<BouquetsViewModel>()
+    private val catalogAdapter by lazy { BouquetsAdapter(requireContext(), this, this) }
+
+    private val saleViewModel by viewModel<SaleBouquetsViewModel>()
+    private val saleAdapter by lazy { BouquetsAdapter(requireContext(), this, this) }
 
     private val categoriesViewModel by viewModel<CategoriesViewModel>()
+    private val categoriesAdapter = CategoriesAdapter(this)
 
-//    private val categoriesList by lazy {
-//
-//    }
-
-    private val flowersList by lazy {
-        mutableListOf(
-            FlowersItem(
-                "НЕВЕСТЕ ДОРОГУ",
-                R.drawable.flower_1,
-                4900,
-                true,
-            ),
-            FlowersItem(
-                "ИСКРЕННОСТЬ",
-                R.drawable.flower_2,
-                5000,
-                true,
-            ),
-            FlowersItem(
-                "ВЛЮБЛЕННОСТЬ",
-                R.drawable.flower_3,
-                7100,
-                false,
-            ),
-            FlowersItem(
-                "ЭЛЕГАНТНОСТЬ",
-                R.drawable.flower_4,
-                3300,
-                true,
-            ),
-            FlowersItem(
-                "ВРЕМЯ ЛЮБИТЬ",
-                R.drawable.flower_5,
-                8900,
-                true,
-            ),
-            FlowersItem(
-                "ЛЮБОВЬ",
-                R.drawable.floower_6,
-                5700,
-                false,
-            ),
-        )
-    }
-
-    private val saleList by lazy {
-        mutableListOf(
-            FlowersItem(
-                "НЕВЕСТЕ ДОРОГУ",
-                R.drawable.flower_1,
-                4900,
-                false,
-                "-15%",
-            ),
-            FlowersItem(
-                "ИСКРЕННОСТЬ",
-                R.drawable.flower_2,
-                5000,
-                false,
-                "-9%"
-            ),
-            FlowersItem(
-                "ВЛЮБЛЕННОСТЬ",
-                R.drawable.flower_3,
-                7100,
-                false,
-                "-20%",
-            ),
-            FlowersItem(
-                "ЭЛЕГАНТНОСТЬ",
-                R.drawable.flower_4,
-                3300,
-                false,
-                "-8%"
-            ),
-            FlowersItem(
-                "ВРЕМЯ ЛЮБИТЬ",
-                R.drawable.flower_5,
-                8900,
-                false,
-                "-5%",
-            ),
-            FlowersItem(
-                "ЛЮБОВЬ",
-                R.drawable.floower_6,
-                5700,
-                false,
-                "-10%",
-            ),
-        )
-    }
+    private val databaseViewModel by viewModel<DatabaseViewModel>()
 
 
     override fun onCreateView(
@@ -129,10 +53,11 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
-        flowersAdapter = FlowersAdapter(requireContext(), this)
-        saleAdapter = FlowersAdapter(requireContext(), this)
-        init()
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_flowers_list, container, false)
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            databaseViewModel.clear()
+//        }
         return binding.root
     }
 
@@ -143,8 +68,7 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.action_search -> {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
+                        Toast.makeText(requireContext(), "поиск", Toast.LENGTH_SHORT).show()
                         true
                     }
                     R.id.action_sort -> {
@@ -157,26 +81,33 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
                 }
             }
         }
+        init()
         lifecycle.addObserver(categoriesViewModel)
-        categoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner){
+        categoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner) {
             categoriesAdapter.setList(it.toList())
+        }
+        lifecycle.addObserver(catalogViewModel)
+        catalogViewModel.bouquetsLiveData.observe(viewLifecycleOwner) {
+            catalogAdapter.setData(it.asList())
+        }
+        lifecycle.addObserver(saleViewModel)
+        saleViewModel.saleBouquetsLiveData.observe(viewLifecycleOwner) {
+            saleAdapter.setData(it.asList())
         }
         binding.callButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
             startActivity(intent)
         }
-//        binding.toTopsButton.setOnClickListener {
-//            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("хиты продаж", flowersList)
-//            findNavController().navigate(action)
-//        }
+
         binding.toAuthorButton.setOnClickListener {
-            val action = FlowersListFragmentDirections.actionFlowersListFragmentToAllBouquetsFragment()
+            val action =
+                FlowersListFragmentDirections.actionFlowersListFragmentToAllBouquetsFragment()
             findNavController().navigate(action)
         }
-//        binding.toSaleButton.setOnClickListener {
-//            val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment("распродажа")
-//            findNavController().navigate(action)
-//        }
+        binding.toSaleButton.setOnClickListener {
+            val action = FlowersListFragmentDirections.actionFlowersListFragmentToSaleFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
@@ -186,23 +117,37 @@ class FlowersListFragment : Fragment(), Delegates.FlowerClicked, Delegates.Categ
 
     private fun init() {
         binding.apply {
-            recyclerViewTops.adapter = flowersAdapter
-            recyclerViewAuthor.adapter = flowersAdapter
+            recyclerViewAuthor.adapter = catalogAdapter
             recyclerViewSale.adapter = saleAdapter
             recyclerViewCategories.adapter = categoriesAdapter
         }
-        flowersAdapter.setList(flowersList)
-        saleAdapter.setList(saleList)
     }
 
-    override fun onItemClick(flower: FlowersItem) {
-//        val action =
-//            FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(flower)
-//        findNavController().navigate(action)
-    }
 
     override fun onItemClick(category: CategoriesItem) {
-        val action = FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.name, category.bouquets)
+        val action =
+            FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.name)
         findNavController().navigate(action)
+    }
+
+    override fun onItemClick(bouquet: BouquetItem) {
+        val action =
+            FlowersListFragmentDirections.actionFlowersListFragmentToFlowerDetailsFragment(bouquet)
+        findNavController().navigate(action)
+    }
+
+    override fun onItemClick(view: String, basketItem: BasketItem) {
+        if (view == "plus") {
+            Toast.makeText(requireContext(), "добавлено в корзину", Toast.LENGTH_SHORT).show()
+            databaseViewModel.insert(basketItem)
+            databaseViewModel.productList.observe(viewLifecycleOwner) { it ->
+                    Log.i("list", "1 ${it.size}")
+            }
+        } else {
+            Toast.makeText(requireContext(), "minus", Toast.LENGTH_SHORT).show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                databaseViewModel.delete(basketItem)
+            }
+        }
     }
 }

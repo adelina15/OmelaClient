@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.omela.view.Delegates
 import com.example.omela.R
-import com.example.omela.databinding.BasketItemBinding
 import com.example.omela.data.model.BasketItem
+import com.example.omela.databinding.BasketItemBinding
 import com.example.omela.data.model.BouquetItem
 
-class BasketAdapter(val basketClicked: Delegates.BouquetClicked): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
+class BasketAdapter(val basketClicked: Delegates.BasketClicked): RecyclerView.Adapter<BasketAdapter.BasketViewHolder>() {
 
-    private var list = listOf<BouquetItem>()
-    fun setList (list : List<BouquetItem>){
+    private var list = listOf<BasketItem>()
+    fun setList (list : List<BasketItem>){
         this.list = list
         notifyDataSetChanged()
     }
@@ -23,11 +23,10 @@ class BasketAdapter(val basketClicked: Delegates.BouquetClicked): RecyclerView.A
     class BasketViewHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = BasketItemBinding.bind(item)
         @SuppressLint("SetTextI18n")
-        fun bind(flowers: BouquetItem) = with(binding) {
+        fun bind(flowers: BasketItem) = with(binding) {
             basketName.text = flowers.name
             basketDiscount.text = (if (flowers.discount == null) {""} else {"-${flowers.discount}%"})
-            Glide.with(itemView.context).load(flowers.photos[0]).into(basketImage)
-//            basketImage.loadWithGlide(flowers.image)
+            Glide.with(itemView.context).load(flowers.photo).into(basketImage)
             basketPrice.text = "${flowers.price} с"
         }
     }

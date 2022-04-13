@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_flowersListFragment_to_allBouquetsFragment"
             app:destination="@id/allBouquetsFragment" />
+        <action
+            android:id="@+id/action_flowersListFragment_to_saleFragment"
+            app:destination="@id/saleFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -35,9 +38,10 @@
         <argument
             android:name="name"
             app:argType="string" />
-        <argument
-            android:name="bouquets"
-            app:argType="com.example.omela.data.model.BouquetItem[]" />
+<!--        <argument-->
+<!--            android:name="bouquets"-->
+<!--            app:argType="com.example.omela.data.model.BouquetItem[]" />-->
+
     </fragment>
     <fragment
         android:id="@+id/flowerDetailsFragment"
@@ -53,6 +57,14 @@
         android:label="AllBouquetsFragment" >
         <action
             android:id="@+id/action_allBouquetsFragment_to_flowerDetailsFragment"
+            app:destination="@id/flowerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saleFragment"
+        android:name="com.example.omela.view.main.SaleFragment"
+        android:label="SaleFragment" >
+        <action
+            android:id="@+id/action_saleFragment_to_flowerDetailsFragment"
             app:destination="@id/flowerDetailsFragment" />
     </fragment>
 </navigation>

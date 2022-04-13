@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omela.R
 import com.example.omela.databinding.BasketHistoryItemBinding
-import com.example.omela.data.model.BasketItem
 import com.example.omela.data.model.BouquetItem
 
 class BasketHistoryAdapter(): RecyclerView.Adapter<BasketHistoryAdapter.BasketHistoryViewHolder>() {

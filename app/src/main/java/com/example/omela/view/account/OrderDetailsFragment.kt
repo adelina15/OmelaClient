@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.omela.R
 import com.example.omela.view.adapters.BasketHistoryAdapter
 import com.example.omela.databinding.FragmentOrderDetailsBinding
-import com.example.omela.data.model.BasketItem
 
 class OrderDetailsFragment : Fragment() {
 

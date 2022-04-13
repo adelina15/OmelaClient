@@ -5,56 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.omela.R
+import com.example.omela.data.model.BouquetItem
+import com.example.omela.databinding.FragmentSaleBinding
+import com.example.omela.view.Delegates
+import com.example.omela.view.adapters.BouquetsAdapter
+import com.example.omela.viewmodel.BouquetsViewModel
+import com.example.omela.viewmodel.SaleBouquetsViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SaleFragment : Fragment(), Delegates.BouquetClicked {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SaleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SaleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentSaleBinding? = null
+    private val binding
+        get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val saleViewModel by viewModel<SaleBouquetsViewModel>()
+    private lateinit var bouquetsAdapter: BouquetsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sale, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sale, container, false)
+//        bouquetsAdapter = BouquetsAdapter(requireContext(), this)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SaleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SaleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding.toolbar) {
+            setNavigationIcon(R.drawable.ic_back_arrow)
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
             }
+        }
+        lifecycle.addObserver(saleViewModel)
+        init()
+        saleViewModel.saleBouquetsLiveData.observe(viewLifecycleOwner){
+//            bouquetsAdapter.setData(it.asList())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun init() {
+        binding.apply {
+            flowersInCategoryRv.layoutManager = GridLayoutManager(requireContext(), 2)
+//            flowersInCategoryRv.adapter = bouquetsAdapter
+        }
+    }
+
+
+    override fun onItemClick(bouquet: BouquetItem) {
+        val action = SaleFragmentDirections.actionSaleFragmentToFlowerDetailsFragment(bouquet)
+        findNavController().navigate(action)
     }
 }

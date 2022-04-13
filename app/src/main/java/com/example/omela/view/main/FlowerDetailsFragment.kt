@@ -32,10 +32,17 @@ class FlowerDetailsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val flowers = args.bouquet.flowers
         with(binding){
             name.text = args.bouquet.name
             description.text = args.bouquet.description
-            Glide.with(requireContext()).load(args.bouquet.photos[0]).into(image)
+            size.text = "диаметр ${args.bouquet.size.width}см \n" +
+                        "ширина ${args.bouquet.size.height}см"
+            for (f in flowers){
+                content.text = "${f.name} ${f.quantity} шт \n"
+            }
+
+            Glide.with(requireContext()).load(args.bouquet.photo).into(image)
 //            if(args.bouquet.is_favorite) isFavorite.setImageResource(R.drawable.ic_heart_red)
             if(args.bouquet.discount != 0) {
                 status.visibility = View.VISIBLE

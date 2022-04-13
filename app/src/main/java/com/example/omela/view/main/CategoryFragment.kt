@@ -30,7 +30,7 @@ class CategoryFragment : Fragment(), Delegates.BouquetClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
-        bouquetsAdapter = BouquetsAdapter(requireContext(), this)
+//        bouquetsAdapter = BouquetsAdapter(requireContext(), this)
         init()
         return binding.root
     }
@@ -58,7 +58,7 @@ class CategoryFragment : Fragment(), Delegates.BouquetClicked {
             flowersInCategoryRv.layoutManager = GridLayoutManager(requireContext(), 2)
             flowersInCategoryRv.adapter = bouquetsAdapter
         }
-        bouquetsAdapter.setData(args.bouquets)
+//        bouquetsAdapter.setData(args.bouquets.asList())
     }
 
     override fun onItemClick(bouquet: BouquetItem) {

@@ -17,24 +17,28 @@ import androidx.room.Dao
 import com.example.omela.view.Delegates
 import com.example.omela.R
 import com.example.omela.application.MyApplication
+import com.example.omela.data.model.BasketItem
 import com.example.omela.view.adapters.BasketAdapter
 import com.example.omela.databinding.FragmentBasketBinding
-import com.example.omela.data.model.BasketItem
 import com.example.omela.data.model.BouquetItem
-import com.example.omela.data.repository.DatabaseRepository
 import com.example.omela.viewmodel.CategoriesViewModel
 import com.example.omela.viewmodel.DatabaseViewModel
 import com.example.omela.viewmodel.OneBouquetViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class BasketFragment : Fragment(), Delegates.BouquetClicked {
+class BasketFragment : Fragment(), Delegates.BasketClicked {
     private var _binding: FragmentBasketBinding? = null
     private val binding
         get() = _binding!!
 
     private val basketAdapter = BasketAdapter(this)
-//    private val oneBouquetViewModel by viewModel<OneBouquetViewModel>()
-//    private val databaseViewModel by viewModel<DatabaseViewModel>()
+    private val oneBouquetViewModel by viewModel<OneBouquetViewModel>()
+    private val databaseViewModel by viewModel<DatabaseViewModel>()
+    val bouquetList: MutableList<BasketItem> = mutableListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,17 +64,19 @@ class BasketFragment : Fragment(), Delegates.BouquetClicked {
             alertDialog()
         }
 
-//        var list = databaseViewModel.getAllProductsFromRoom()
-//        Log.i("list", list.toString())
-//        val bouquetList: MutableList<BouquetItem> = mutableListOf()
-//        for (e in list) {
-//            oneBouquetViewModel.getBouquetById(e.id)
-//            bouquetList.add(oneBouquetViewModel.bouquet)
-//        }
-//        basketAdapter.setList(bouquetList)
-//        if (list.isEmpty()) {
-//            Toast.makeText(requireContext(), "No items", Toast.LENGTH_SHORT).show()
-//        }
+        databaseViewModel.productList.observe(viewLifecycleOwner) { it ->
+            Log.i("list", "1st $it")
+            if (it.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "No items", Toast.LENGTH_SHORT).show()
+                Log.i("list", "No items")
+            }
+            for (e in it) {
+                bouquetList.add(e)
+                Log.i("list", "2nd ${bouquetList.size}")
+            }
+            basketAdapter.setList(bouquetList)
+        }
+        Log.i("list", "6th ${bouquetList.size}")
     }
 
 
@@ -104,9 +110,9 @@ class BasketFragment : Fragment(), Delegates.BouquetClicked {
 
     private fun alertDialogDelete() {
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
-        builder.setTitle("вы действительно удалить этот элемент?")
+        builder.setTitle("вы действительно удалить этот букет?")
         builder.setPositiveButton("да") { _, _ ->
-            Toast.makeText(requireContext(), "корзина очищена", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "букет удален", Toast.LENGTH_SHORT).show()
 //            parentFragmentManager.commit {
 //                replace<Fav>(R.id.nav_fragment)
 //                setReorderingAllowed(true)
@@ -119,7 +125,7 @@ class BasketFragment : Fragment(), Delegates.BouquetClicked {
         builder.show()
     }
 
-    override fun onItemClick(bouquet: BouquetItem) {
+    override fun onItemClick(basketItem: BasketItem) {
         alertDialogDelete()
     }
 }
