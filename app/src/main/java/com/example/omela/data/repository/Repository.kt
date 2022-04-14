@@ -35,7 +35,7 @@ class Repository(private val api: BouquetApi, private val dao: BouquetDao) {
         dao.insert(item)
     }
 
-    suspend fun delete(item: BasketItem) {
+    fun delete(item: BasketItem) {
         dao.delete(item)
     }
 

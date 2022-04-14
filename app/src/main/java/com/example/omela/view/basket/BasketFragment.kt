@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.room.Dao
 import com.example.omela.view.Delegates
@@ -27,6 +29,7 @@ import com.example.omela.viewmodel.OneBouquetViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class BasketFragment : Fragment(), Delegates.BasketClicked {
@@ -36,7 +39,7 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
 
     private val basketAdapter = BasketAdapter(this)
     private val oneBouquetViewModel by viewModel<OneBouquetViewModel>()
-    private val databaseViewModel by viewModel<DatabaseViewModel>()
+    private val databaseViewModel by sharedViewModel<DatabaseViewModel>()
     val bouquetList: MutableList<BasketItem> = mutableListOf()
 
 
@@ -65,18 +68,15 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         }
 
         databaseViewModel.productList.observe(viewLifecycleOwner) { it ->
-            Log.i("list", "1st $it")
             if (it.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), "No items", Toast.LENGTH_SHORT).show()
                 Log.i("list", "No items")
             }
             for (e in it) {
                 bouquetList.add(e)
-                Log.i("list", "2nd ${bouquetList.size}")
             }
             basketAdapter.setList(bouquetList)
         }
-        Log.i("list", "6th ${bouquetList.size}")
     }
 
 
@@ -108,16 +108,14 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         builder.show()
     }
 
-    private fun alertDialogDelete() {
+    private fun alertDialogDelete(basketItem: BasketItem) {
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
         builder.setTitle("вы действительно удалить этот букет?")
         builder.setPositiveButton("да") { _, _ ->
             Toast.makeText(requireContext(), "букет удален", Toast.LENGTH_SHORT).show()
-//            parentFragmentManager.commit {
-//                replace<Fav>(R.id.nav_fragment)
-//                setReorderingAllowed(true)
-//                addToBackStack("name") // name can be null
-//            }
+//            viewLifecycleOwner.lifecycleScope.launch {
+               databaseViewModel.delete(basketItem)
+//           }
         }
         builder.setNegativeButton("нет") { _, _ ->
             Toast.makeText(requireContext(), "действие отменено", Toast.LENGTH_SHORT).show()
@@ -126,6 +124,6 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
     }
 
     override fun onItemClick(basketItem: BasketItem) {
-        alertDialogDelete()
+        alertDialogDelete(basketItem)
     }
 }

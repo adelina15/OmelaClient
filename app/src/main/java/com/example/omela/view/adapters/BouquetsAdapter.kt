@@ -41,6 +41,17 @@ class BouquetsAdapter(private val context: Context,
             listName.text = card.name
             listPrice.text = card.price
             val item = BasketItem(card.id, card.name, card.photo, card.price, card.discount, card.discountResult)
+            if(card.quantity == 1){
+                minus.visibility = View.VISIBLE
+                count.visibility = View.VISIBLE
+                plus.visibility = View.INVISIBLE
+                count.text = "1"
+            }
+            else{
+                plus.visibility = View.VISIBLE
+                count.visibility = View.INVISIBLE
+                minus.visibility = View.INVISIBLE
+            }
             //logic to hide and show plus, minus and count
             plus.setOnClickListener {
                 minus.visibility = View.VISIBLE

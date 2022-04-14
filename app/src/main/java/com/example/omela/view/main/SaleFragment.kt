@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.omela.R
+import com.example.omela.data.model.BasketItem
 import com.example.omela.data.model.BouquetItem
 import com.example.omela.databinding.FragmentSaleBinding
 import com.example.omela.view.Delegates
@@ -17,7 +19,7 @@ import com.example.omela.viewmodel.BouquetsViewModel
 import com.example.omela.viewmodel.SaleBouquetsViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SaleFragment : Fragment(), Delegates.BouquetClicked {
+class SaleFragment : Fragment(), Delegates.BouquetClicked, Delegates.ViewClicked {
 
     private var _binding: FragmentSaleBinding? = null
     private val binding
@@ -32,7 +34,7 @@ class SaleFragment : Fragment(), Delegates.BouquetClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sale, container, false)
-//        bouquetsAdapter = BouquetsAdapter(requireContext(), this)
+        bouquetsAdapter = BouquetsAdapter(requireContext(), this, this)
         return binding.root
     }
 
@@ -47,7 +49,7 @@ class SaleFragment : Fragment(), Delegates.BouquetClicked {
         lifecycle.addObserver(saleViewModel)
         init()
         saleViewModel.saleBouquetsLiveData.observe(viewLifecycleOwner){
-//            bouquetsAdapter.setData(it.asList())
+            bouquetsAdapter.setData(it.asList())
         }
     }
 
@@ -59,7 +61,7 @@ class SaleFragment : Fragment(), Delegates.BouquetClicked {
     private fun init() {
         binding.apply {
             flowersInCategoryRv.layoutManager = GridLayoutManager(requireContext(), 2)
-//            flowersInCategoryRv.adapter = bouquetsAdapter
+            flowersInCategoryRv.adapter = bouquetsAdapter
         }
     }
 
@@ -67,5 +69,11 @@ class SaleFragment : Fragment(), Delegates.BouquetClicked {
     override fun onItemClick(bouquet: BouquetItem) {
         val action = SaleFragmentDirections.actionSaleFragmentToFlowerDetailsFragment(bouquet)
         findNavController().navigate(action)
+    }
+
+    override fun onItemClick(view: String, basketItem: BasketItem) {
+        if (view == "plus") {
+            Toast.makeText(requireContext(), "добавлено в корзину", Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -16,5 +16,6 @@ data class BouquetItem(
     val flowers: List<Flower>,
     val photo: String,
     val price: String,
-    val size: Size
+    val size: Size,
+    var quantity: Int = 0
 ): Serializable

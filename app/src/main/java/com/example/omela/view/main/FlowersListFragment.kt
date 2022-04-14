@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.omela.view.Delegates
@@ -28,6 +29,7 @@ import com.example.omela.viewmodel.DatabaseViewModel
 import com.example.omela.viewmodel.SaleBouquetsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.CategoryClicked,
@@ -45,7 +47,7 @@ class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.Cate
     private val categoriesViewModel by viewModel<CategoriesViewModel>()
     private val categoriesAdapter = CategoriesAdapter(this)
 
-    private val databaseViewModel by viewModel<DatabaseViewModel>()
+    private val databaseViewModel by sharedViewModel<DatabaseViewModel>()
 
 
     override fun onCreateView(
@@ -81,13 +83,32 @@ class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.Cate
                 }
             }
         }
+        var databaseList: List<BasketItem> = listOf()
         init()
         lifecycle.addObserver(categoriesViewModel)
         categoriesViewModel.categoriesLiveData.observe(viewLifecycleOwner) {
             categoriesAdapter.setList(it.toList())
         }
+        lifecycle.addObserver(databaseViewModel)
+        databaseViewModel.productList.observe(viewLifecycleOwner) {
+            databaseList = it
+            Log.i("list", "observe $databaseList")
+        }
         lifecycle.addObserver(catalogViewModel)
         catalogViewModel.bouquetsLiveData.observe(viewLifecycleOwner) {
+            for (e in it) {
+                for (i in databaseList) {
+                    if (i.bouquetId == e.id) {
+                        e.quantity = 1
+                        Log.i("list", "quantity 1 ${e.name}")
+                    } else {
+                        e.quantity = 0
+                        Log.i("list", "quantity 0 ${e.name}")
+                    }
+                }
+                Log.i("list", "observe2 $databaseList")
+            }
+            Log.i("list", "observe3 $databaseList")
             catalogAdapter.setData(it.asList())
         }
         lifecycle.addObserver(saleViewModel)
@@ -98,7 +119,6 @@ class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.Cate
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$+996123456"))
             startActivity(intent)
         }
-
         binding.toAuthorButton.setOnClickListener {
             val action =
                 FlowersListFragmentDirections.actionFlowersListFragmentToAllBouquetsFragment()
@@ -140,14 +160,14 @@ class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.Cate
         if (view == "plus") {
             Toast.makeText(requireContext(), "добавлено в корзину", Toast.LENGTH_SHORT).show()
             databaseViewModel.insert(basketItem)
-            databaseViewModel.productList.observe(viewLifecycleOwner) { it ->
-                    Log.i("list", "1 ${it.size}")
-            }
+//            databaseViewModel.productList.observe(viewLifecycleOwner) { it ->
+//                    Log.i("list", "1 ${it.size}")
+//            }
         } else {
             Toast.makeText(requireContext(), "minus", Toast.LENGTH_SHORT).show()
-            viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.lifecycleScope.launch {
                 databaseViewModel.delete(basketItem)
-            }
+   //         }
         }
     }
 }

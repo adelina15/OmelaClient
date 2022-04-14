@@ -15,7 +15,7 @@ class DatabaseViewModel(private val repository: Repository) : ViewModel(),
             repository.insert(item)
         }
 
-    suspend fun delete(item: BasketItem) =
+    fun delete(item: BasketItem) =
         repository.delete(item)
 
     suspend fun clear() =
