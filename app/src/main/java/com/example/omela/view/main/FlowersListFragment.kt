@@ -146,7 +146,7 @@ class FlowersListFragment : Fragment(), Delegates.BouquetClicked, Delegates.Cate
 
     override fun onItemClick(category: CategoriesItem) {
         val action =
-            FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.name)
+            FlowersListFragmentDirections.actionFlowersListFragmentToCategoryFragment(category.id, category.name)
         findNavController().navigate(action)
     }
 

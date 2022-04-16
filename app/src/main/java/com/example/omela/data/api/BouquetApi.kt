@@ -2,6 +2,7 @@ package com.example.omela.data.api
 
 import com.example.omela.data.model.BouquetItem
 import com.example.omela.data.model.CategoriesItem
+import com.example.omela.data.model.CategoryBouquets
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -10,6 +11,11 @@ interface BouquetApi {
 
     @GET("categories?type=WITHOUT_REL")
     suspend fun getAllCategories(): Response<ArrayList<CategoriesItem>>
+
+    @GET("categories/{id}")
+    suspend fun getBouquetsInCategory(
+        @Path ("id") id: Int?
+    ): Response<CategoryBouquets>
 
     @GET("bouquets")
     suspend fun getAllBouquets(): Response<Array<BouquetItem>>

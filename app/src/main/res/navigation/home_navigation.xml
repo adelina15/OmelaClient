@@ -36,9 +36,12 @@
             android:id="@+id/action_categoryFragment_to_flowerDetailsFragment"
             app:destination="@id/flowerDetailsFragment" />
         <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
             android:name="name"
             app:argType="string" />
-<!--        <argument-->
+        <!--        <argument-->
 <!--            android:name="bouquets"-->
 <!--            app:argType="com.example.omela.data.model.BouquetItem[]" />-->
 

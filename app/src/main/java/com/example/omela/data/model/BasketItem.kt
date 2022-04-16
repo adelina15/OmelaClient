@@ -9,7 +9,7 @@ data class BasketItem(
     val name: String,
     val photo: String,
     val price: String,
-    val discount: Int,
+    val discount: Int? = null,
     val discountResult: Int,
 //    @PrimaryKey(autoGenerate = true) var id: Int
     )

@@ -2,15 +2,13 @@ package com.example.omela.view.basket
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +21,8 @@ import com.example.omela.data.model.BasketItem
 import com.example.omela.view.adapters.BasketAdapter
 import com.example.omela.databinding.FragmentBasketBinding
 import com.example.omela.data.model.BouquetItem
+import com.example.omela.view.FavoritesFragment
+import com.example.omela.view.NothingToShowFragment
 import com.example.omela.viewmodel.CategoriesViewModel
 import com.example.omela.viewmodel.DatabaseViewModel
 import com.example.omela.viewmodel.OneBouquetViewModel
@@ -71,11 +71,18 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
             if (it.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), "No items", Toast.LENGTH_SHORT).show()
                 Log.i("list", "No items")
+                parentFragmentManager.commit {
+                    replace<NothingToShowFragment>(R.id.nav_fragment)
+                    setReorderingAllowed(true)
+                    addToBackStack("name") // name can be null
+                }
             }
-            for (e in it) {
-                bouquetList.add(e)
+            else {
+                for (e in it) {
+                    bouquetList.add(e)
+                }
+                basketAdapter.setList(bouquetList)
             }
-            basketAdapter.setList(bouquetList)
         }
     }
 
@@ -95,12 +102,11 @@ class BasketFragment : Fragment(), Delegates.BasketClicked {
         val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogCustom)
         builder.setTitle("вы действительно хотите очистить корзину?")
         builder.setPositiveButton("да") { _, _ ->
+            viewLifecycleOwner.lifecycleScope.launch {
+                databaseViewModel.clear()
+            }
             Toast.makeText(requireContext(), "корзина очищена", Toast.LENGTH_SHORT).show()
-//            parentFragmentManager.commit {
-//                replace<Fav>(R.id.nav_fragment)
-//                setReorderingAllowed(true)
-//                addToBackStack("name") // name can be null
-//            }
+
         }
         builder.setNegativeButton("нет") { _, _ ->
             Toast.makeText(requireContext(), "действие отменено", Toast.LENGTH_SHORT).show()
